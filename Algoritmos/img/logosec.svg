@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <g transform="translate(128 48) scale(1.38)" fill="none" stroke="#173D32" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 35C17 15 39 8 60 16C71 20 80 28 87 35C80 42 71 50 60 54C39 62 17 55 4 35Z"/>
+    <path d="M87 35L104 20V50L87 35Z"/>
+    <path d="M21 39C35 29 48 29 63 38C69 42 75 43 81 40"/>
+    <circle cx="56" cy="27" r="2.5" fill="#173D32" stroke="none"/>
+  </g>
+  <text x="200" y="210" text-anchor="middle" fill="#173D32" font-family="Manrope, Arial, sans-serif" font-size="44" font-weight="600" letter-spacing="-1.5">Fishing Lab</text>
+  <path d="M132 234H268" stroke="#D9C9A3" stroke-width="3" stroke-linecap="round"/>
+</svg>
