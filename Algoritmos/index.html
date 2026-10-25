@@ -8,8 +8,8 @@
 </head>
 <body>
     <header>
-        <nav>
-            <a href="index.html"><img src="./img/logo.svg" alt="FishingLab"></a>
+        <nav class="nav-bar">
+            <a href="index.html"><img class="nav-logo" src="./img/logo.svg" alt="FishingLab"></a>
             <a href="especies.html">Espécies</a>
             <a href="equipamentos.html">Equipamentos</a>
             <a href="tecnicas.html">Técnidas</a>
@@ -24,14 +24,97 @@
     <main>
         <div class="inicio-esquerda">
             <h6>UM PORTAL PARA APRENDER A PESCAR</h6>
-            <h3>Onde a paixão pela pesca encontra o conhecimento</h3>
-            <h5>No Fishing Lab, a curiosidade encontra o lago. Descubra os peixes, prepare seu equipamento e aprenda a pescar em pesqueiros com mais consciência.</h5>
+            <h2>Onde a paixão pela pesca encontra o conhecimento</h3>
+            <h4>No Fishing Lab, a curiosidade encontra o lago. Descubra os peixes, prepare seu equipamento e aprenda a pescar em pesqueiros com mais consciência.</h5>
             <p>Para iniciantes. Com respeito à natureza.</p>
         </div>
 
         <div class="inicio-direita">
-        <img src="" alt="">
+        <img src="./img/eu_pai.jpg" alt="">
         </div>
     </main>
+
+    <div class="aprenda">
+        <h6>APRENDA - TRÊS CAMINHOS, UNA BOA BASE</h1>
+        <h2>Antes de lançar a linha, explore.</h3>
+
+        <div class="cards-aprenda">
+            <div class="card1">
+                <h6>01 - CONHEÇA QUEM HABITA O LAGO</h6>
+                <h3>Espécies de peixes</h3>
+                <h5>Da tilápia a pirarara: hábitos, alimentação e particularidades de seis peixes de pesqueiro.</h5>
+
+                <button onclick="explorar()">Explorar Guia</button>
+            </div>
+
+            <div class="card1">
+                <h6>02 - PREPARE SUA PESCARIA</h6>
+                <h3>Equipamentos</h3>
+                <h5>Entenda a função de cada item e escolha um conjunto adequado ao peixe e ao pesqueiro.</h5>
+
+                <button onclick="explorar()">Explorar Guia</button>
+            </div>
+
+            <div class="card1">
+                <h6>03 - APRENDA NA PRÁTICA</h6>
+                <h3>Técnicas de pesca</h3>
+                <h5>Leia o ambiente, conheça iscas e montagens e aprenda a cuidar do peixe em cada etapa.</h5>
+
+                <button onclick="explorar()">Explorar Guia</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="historia">
+        <div class="historia-esquerda">
+            <img src="./img/ilhabela.jpg" alt="">
+        </div>
+
+        <div class="historia-direita">
+            <h6>DE ONDE VEM O FISHING LAB</h6>
+            <h3>Muito além de uma pescaria</h3>
+            <h5>Comecei a pescar na infância, acompanhando meu pai e meu tio. Mais do que esperar fisgada, era um jeito de estar perto deles e descobrir, aos poucos, o que acontecia debaixo d'agua. <br>
+
+                Alguns anos depois, voltei a praticar ao lado da minha esposa. A curiosidade voltou junto: por que um peixe prefere certa isca? Como escolher o equipamento? O que muda de um pesqueiro para outro? <br>
+
+                Essa curiosidade e a vontade de aprender mais sobre pescaria deram origem ao Fishing Lab: um espaço para organizar descobertas e compartilhar o aprendizado.
+            </h5>
+        </div>
+    </div>
+
+    <div class="desafio">
+        <h6>A CURIOSIDADE CONTINUA</h6>
+        <h3>Meus próximos desafios</h3>
+
+        <div class="desafio-card">
+            <h6>AINDA PELA FRENTE</h6>
+            <h4>Pirarara</h4>
+            <h5>Um peixe de fundo, uma nova experiência</h5>
+
+            <button onclick="pirarara()"></button>
+        </div>
+
+        <div class="desafio-card">
+            <h6>AINDA PELA FRENTE</h6>
+            <h4>Pirucu</h4>
+            <h5>Um gigante que pede preparo e respeito.</h5>
+
+            <button onclick="pirarucu()"></button>
+        </div>        
+    </div>
+
+    <footer>
+        <nav class="nav-rodape">
+        <img src="./img/logo-redondo-bege.png" alt="">
+        <h2>Fishing Lab</h2>
+        <h3>EDIÇÃO PESQUEIROS</h3>
+        <h6>Conhecimento para aproveitar o pesqueiro, cuidar dos peixes e aprender a cada pescaria</h6>
+
+        <p>Copyright © 2026 - Edição Pesqueiros - Portal Educativo</p>
+        <p>Aprender, respeitar e pescar com responsabilidade.</p>
+
+        <button onclick="login()">Entrar e fazer o quiz</button>
+        </nav>
+    </footer>
 </body>
 </html>
