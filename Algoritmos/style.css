@@ -108,12 +108,53 @@ h1, h2, h3{
     border-radius: 15px;
 }
 
+.aprenda {
+    background-color: #FFFFFF;
+    padding: 60px 40px;
+}
+
+.aprenda h2 {
+    color: #173D32;
+    font-size: 36px;
+}
+
 .cards-aprenda {
     display: flex;
+    gap: 20px;
 }
 
 .card1 {
+    width: 33.33%;
+    background-color: #FFFFFF;
+    border: 1px solid #D9DED7;
+    border-radius: 15px;
+    padding: 25px;
+    box-sizing: border-box;
+}
 
+.link-guia {
+    color: #173D32;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.card-rodape {
+
+    border-top: 1px solid #D9DED7;
+    padding-top: 20px;
+}
+
+.card-rodape a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #173D32;
+    font-weight: 600;
+}
+
+.card-rodape a span:last-child {
+    font-size: 15px;
 }
 
 .historia {
