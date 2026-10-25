@@ -1,9 +1,46 @@
+body {
+    font-family: 'DM Sans', sans-serif;
+}
+
+h1, h2, h3{
+    font-family: 'Playfair Display', serif;
+}
+
 .nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    width: 250px;
+}
+
+.nav-centro {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-centro a {
+    text-decoration: none;
+    color: #173D32
+}
+
+.nav-direita {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-entrar {
 
 }
 
-.nav-logo{
+.btn-cadastro {
 
+}
+
+.inicio{
+    display: flex;
 }
 
 .inicio-esquerda {
@@ -15,11 +52,15 @@
 }
 
 .cards-aprenda {
+    display: flex;
+}
+
+.card1 {
 
 }
 
-.cards1 {
-
+.historia {
+    display: flex;
 }
 
 .historia-esquerda {
@@ -35,5 +76,9 @@
 }
 
 .desafio-card {
-    
+
+}
+
+.rodape {
+
 }
