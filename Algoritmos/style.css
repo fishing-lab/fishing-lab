@@ -52,10 +52,10 @@ h1, h2, h3{
 
 .inicio {
     display: flex;
-    padding: 20px 40px;
+    padding: 20px 120px;
     align-items: center;
     gap: 40px;
-    background-color: #F5F1E7;
+    background-color: #f0ebdd;
 }
 
 .inicio-esquerda {
@@ -110,7 +110,7 @@ h1, h2, h3{
 
 .aprenda {
     background-color: #FAF9F5;
-    padding: 40px 40px;
+    padding: 20px 120px;
 }
 
 .aprenda h2 {
@@ -121,7 +121,7 @@ h1, h2, h3{
 
 .aprenda h6 {
     color: #173D32;
-    font-size: 12;
+    font-size: 12px;
     letter-spacing: 1px;
 }
 
@@ -157,6 +157,7 @@ h1, h2, h3{
     color: #49745A;
     font-size: 12px;
     letter-spacing: 1px;
+    margin-bottom: 0;
 }
 
 .card1 p {
@@ -169,11 +170,13 @@ h1, h2, h3{
 }
 
 .card1 img {
-    width: 100%;
+    width: calc(100% + 50px);
+    margin-left: -25px;
+    margin-top: -25px;
     height: 250px;
     object-fit: cover;
     object-position: center;
-    border-radius: 10px;
+    border-radius: 15px 15px 0 0 ;
 }
 
 .link-guia {
