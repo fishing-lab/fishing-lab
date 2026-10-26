@@ -1,3 +1,5 @@
+/* INDEX */
+
 body {
     margin: 0;
     font-family: 'DM Sans', sans-serif;
@@ -380,3 +382,160 @@ h1, h2, h3{
     font-size: 11px;
     margin: 5px 0;
 }
+
+/* INDEX */
+
+/* ESPÉCIES */
+
+body:has(.head) {
+    background-color: #faf9f5;
+}
+
+.head {
+    padding: 60px 120px;
+}
+
+.button-head {
+    border-bottom: 1px solid #D9DFD5;
+    padding-bottom: 40px;
+}
+
+.titulo-head h3 {
+    font-family: 'DM Sans', sans-serif;
+    color: #49745A;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.titulo-head h1 {
+    color: #173D32;
+    font-size: 48px;
+    font-weight: 500;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.titulo-head p {
+    color: #6d736e;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-top: 0;
+    margin-bottom: 35px;
+    max-width: 700px;
+}
+
+.button-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #D9DFD5;
+    padding-bottom: 40px;
+}
+
+.button-head p {
+    color: #49745A;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin: 0 10px 0 0;
+    white-space: nowrap;
+}
+
+.button-head a {
+    display: inline-block;
+    text-decoration: none;
+    color: #173D32;
+    background-color: #faf9f5;
+    border: 1px solid #D9DED7;
+    border-radius: 25px;
+    padding: 8px 16px;
+    font-size: 13px;
+}
+
+.button-head a:hover {
+    background-color: #173D32;
+    color: #FFFFFF;
+}
+
+.card-peixe {
+    display: flex;
+    gap: 50px;
+    padding: 60px 120px;
+    border-bottom: 1px solid #D9DED7;
+}
+
+.foto-peixe {
+    width: 35%;
+}
+
+.foto-peixe img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.informacoes-peixe {
+    width: 65%;
+}
+
+.titulo-peixe {
+    margin-bottom: 35px;
+}
+
+.titulo-peixe h3 {
+    color: #173D32;
+    font-size: 42px;
+    font-weight: 500;
+    margin: 0 0 10px 0;
+}
+
+.titulo-peixe p {
+    color: #6d736e;
+    font-size: 16px;
+    margin: 0;
+}
+
+.titulo-peixe p:first-child {
+    color: #49745A;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.conteudo-peixe {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.conteudo-peixe h4 {
+    color: #173D32;
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.conteudo-peixe p {
+    color: #6d736e;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-top: 0;
+}
+
+.descricao-peixe {
+    width: calc(50% - 15px);
+}
+
+.nome-peixe {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+}
+
+.nome-peixe p {
+    color: #49745A;
+    font-size: 14px;
+}
+
+/* ESPÉCIES */
