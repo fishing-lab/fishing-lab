@@ -391,8 +391,12 @@ body:has(.head) {
     background-color: #faf9f5;
 }
 
+body:has(.head) .nav-bar {
+    background-color: #FFFFFF;
+}
+
 .head {
-    padding: 60px 120px;
+    padding: 60px 120px 20px 120px;
 }
 
 .button-head {
@@ -460,24 +464,25 @@ body:has(.head) {
 
 .card-peixe {
     display: flex;
-    gap: 50px;
+    gap: 30px;
     padding: 60px 120px;
-    border-bottom: 1px solid #D9DED7;
 }
 
 .foto-peixe {
-    width: 35%;
+    width: 40%;
+    flex-shrink: 0;
 }
 
 .foto-peixe img {
     width: 100%;
-    height: 350px;
+    height: 480px;
     object-fit: cover;
     border-radius: 15px;
 }
 
-.informacoes-peixe {
-    width: 65%;
+.infos-peixe {
+    flex: 1;
+    min-width: 0;
 }
 
 .titulo-peixe {
@@ -486,7 +491,7 @@ body:has(.head) {
 
 .titulo-peixe h3 {
     color: #173D32;
-    font-size: 42px;
+    font-size: 36px;
     font-weight: 500;
     margin: 0 0 10px 0;
 }
@@ -507,18 +512,19 @@ body:has(.head) {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
+    row-gap: 15px;
 }
 
 .conteudo-peixe h4 {
     color: #173D32;
-    font-size: 16px;
+    font-size: 14px;
     margin-top: 0;
     margin-bottom: 12px;
 }
 
 .conteudo-peixe p {
     color: #6d736e;
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.5;
     margin-top: 0;
 }
@@ -538,4 +544,12 @@ body:has(.head) {
     font-size: 14px;
 }
 
+.linha-peixe {
+    border-bottom: 1px solid #D9DED7;
+    margin: 0 120px;
+}
+
+html:has(.head) {
+    scroll-behavior: smooth;
+}
 /* ESPÉCIES */
