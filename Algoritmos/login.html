@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./acesso.css">
+    <link rel="icon" href="./img/icon.svg">
+    <title>Login - Fishing Lab</title>
+</head>
+<body>
+<header>
+<nav class="nav-bar">
+<div>
+<a href="index.html"><img alt="FishingLab" class="nav-logo" src="./img/logo.svg"/></a>
+</div>
+<div class="nav-centro">
+<a href="especies.html">Espécies</a>
+<a href="equipamentos.html">Equipamentos</a>
+<a href="tecnicas.html">Técnicas</a>
+<a href="quiz.html">Quiz</a>
+<a href="dashboard.html">Dashboard</a>
+</div>
+<div class="nav-direita">
+<a class="btn-entrar" href="login.html">Entrar</a>
+<a class="btn-cadastro" href="cadastro.html">Criar Conta</a>
+</div>
+</nav>
+</header>
+
+    <main class="pagina-acesso">
+        <div class="convite">
+            <img src="./img/foto-acesso.png" alt="Fotografia de pesca">
+            <div class="convite-texto">
+                <h4>DA CURIOSIDADE AO CONHECIMENTO</h4>
+                <h2>A próxima descoberta começa aqui.</h2>
+                <p>Aprenda com os guias. Explore o Fishing Lab e coloque seu conhecimento em prática no quiz.</p>
+            </div>
+        </div>
+        <div class="formulario">
+            <h4>BEM-VINDO DE VOLTA</h4>
+            <h1>Bom ter você por aqui.</h1>
+            <p>Entre no Fishing Lab para continuar sua jornada de aprendizado.</p>
+
+            <div class="campo">
+                <p>E-mail</p>
+                <input type="email" id="input_email" placeholder="voce@exemplo.com">
+            </div>
+
+            <div class="campo">
+                <p>Senha</p>
+                <input type="password" id="input_senha" placeholder="Digite sua senha">
+            </div>
+
+            <button class="botao-acesso" onclick="entrar()">Entrar →</button>
+            <p id="mensagem" class="mensagem"></p>
+            <div class="link-final">Ainda não tem conta? <a href="cadastro.html">Criar conta</a></div>
+        </div>
+    </main>
+
+<footer class="rodape">
+<div class="rodape-logo">
+<img alt="Logo Redondo Bege" src="./img/logo-redondo-bege.png"/>
+<div class="rodape-titulo">
+<h2>Fishing Lab</h2>
+<h3>EDIÇÃO PESQUEIROS</h3>
+</div>
+</div>
+<h6>Conhecimento para aproveitar o pesqueiro, cuidar dos peixes e aprender a cada pescaria</h6>
+<div class="rodape-linha">
+<p>Copyright © 2026 - Edição Pesqueiros - Portal Educativo</p>
+</div>
+</footer>
+</body>
+</html>
+
+<script>
+    function entrar() {
+        var email = document.getElementById('input_email').value;
+        var senha = document.getElementById('input_senha').value;
+
+        if (email == '' || senha == '') {
+            mensagem.innerHTML = 'Preencha o e-mail e a senha.';
+        } else {
+            mensagem.innerHTML = 'O acesso com conta será ativado quando conectarmos o banco de dados.';
+        }
+    }
+</script>
