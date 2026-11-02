@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./quiz-dash.css">
+    <link rel="icon" href="./img/icon.svg">
+    <title>Dashboard - Fishing Lab</title>
+</head>
+<body>
+    <header>
+        <nav class="nav-bar">
+            <div>
+                <a href="index.html"><img alt="FishingLab" class="nav-logo" src="./img/logo.svg"></a>
+            </div>
+            <div class="nav-centro">
+                <a href="especies.html">Espécies</a>
+                <a href="equipamentos.html">Equipamentos</a>
+                <a href="tecnicas.html">Técnicas</a>
+                <a href="quiz.html">Quiz</a>
+                <a href="dashboard.html">Dashboard</a>
+            </div>
+            <div class="nav-direita">
+                <a class="btn-entrar" href="login.html">Entrar</a>
+                <a class="btn-cadastro" href="cadastro.html">Criar Conta</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pagina">
+
+        <div id="comDados" style="display: none;">
+            <div class="titulo-bloco">
+                <h4>VISÃO GERAL</h4>
+                <h1>Minha Dashboard</h1>
+                <p>Acompanhe sua evolução, consulte seus resultados e descubra quais conhecimentos você pode aprimorar.</p>
+            </div>
+
+            <div class="kpis">
+                <div class="kpi">
+                    <h4>ÚLTIMA PONTUAÇÃO</h4>
+                    <strong id="kpiNota">0/10</strong>
+                    <p>Respostas corretas</p>
+                </div>
+
+                <div class="kpi">
+                    <h4>APROVEITAMENTO</h4>
+                    <strong id="kpiPercentual">0%</strong>
+                    <p>Na última tentativa</p>
+                </div>
+
+                <div class="kpi">
+                    <h4>TENTATIVAS REALIZADAS</h4>
+                    <strong id="kpiTentativas">0</strong>
+                    <p>Ao longo das tentativas</p>
+                </div>
+
+                <div class="kpi">
+                    <h4>MELHOR RESULTADO</h4>
+                    <strong id="kpiMelhor">0/10</strong>
+                    <p>Seu maior número de acertos</p>
+                </div>
+            </div>
+
+            <div class="bloco-duplo">
+                <div class="painel">
+                    <h4>EVOLUÇÃO</h4>
+                    <h2>Como você está evoluindo?</h2>
+                    <p>Compare o aproveitamento das suas tentativas.</p>
+                    <div id="graficoEvolucao"></div>
+                </div>
+
+                <div class="painel">
+                    <h4>ÚLTIMA TENTATIVA</h4>
+                    <h2>Desempenho por categoria</h2>
+                    <p>Percentual de acertos em cada assunto.</p>
+                    <div id="categorias"></div>
+                </div>
+            </div>
+
+            <div class="painel">
+                <h4>ONDE REVISAR</h4>
+                <h2>Questões com mais dificuldade</h2>
+                <p>Questões organizadas pela quantidade de erros nas suas tentativas.</p>
+
+                <div class="cabecalho-linha cabecalho-questoes">
+                    <strong>QUESTÃO</strong>
+                    <strong>ERROS</strong>
+                    <strong>ACERTOS</strong>
+                </div>
+
+                <div id="questoesDificeis"></div>
+            </div>
+
+            <div class="painel">
+                <h4>HISTÓRICO</h4>
+                <h2>Suas tentativas</h2>
+                <p>Confira os resultados de cada vez que você respondeu ao quiz.</p>
+
+                <div class="cabecalho-linha">
+                    <strong>TENTATIVA</strong>
+                    <strong>DATA</strong>
+                    <strong>RESULTADO</strong>
+                </div>
+
+                <div id="historicoTentativas"></div>
+            </div>
+
+            <div class="chamada-final">
+                <p>Aprender é um processo. Retome os guias e volte quando quiser.</p>
+                <a href="tecnicas.html">Explorar conteúdos ↗</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="rodape">
+        <div class="rodape-logo">
+            <img alt="Logo Redondo Bege" src="./img/logo-redondo-bege.png">
+            <div class="rodape-titulo">
+                <h2>Fishing Lab</h2>
+                <h3>EDIÇÃO PESQUEIROS</h3>
+            </div>
+        </div>
+
+        <h6>Conhecimento para aproveitar o pesqueiro, cuidar dos peixes e aprender a cada pescaria</h6>
+
+        <div class="rodape-linha">
+            <p>Copyright © 2026 - Edição Pesqueiros - Portal Educativo</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+<script>
+    var perguntas = [
+        'Qual é uma das principais características do tucunaré?',
+        'Em quais ambientes o tucunaré pode ser encontrado?',
+        'Qual é o nome científico utilizado para identificar o grupo dos tucunarés?',
+        'Qual das espécies abaixo é conhecida por ser um peixe de água doce?',
+        'Qual é a principal função de uma vara de pesca?',
+        'Qual equipamento permite armazenar e recolher a linha de pesca?',
+        'O que deve ser considerado na escolha da linha de pesca?',
+        'Qual é o objetivo de utilizar iscas artificiais na pescaria?',
+        'Na pesca com iscas artificiais, o que significa trabalhar a isca?',
+        'Por que variar a velocidade de recolhimento de uma isca artificial?'
+    ];
+
+    var categoriasPerguntas = [
+        'Espécies de Peixes',
+        'Espécies de Peixes',
+        'Espécies de Peixes',
+        'Espécies de Peixes',
+        'Equipamentos',
+        'Equipamentos',
+        'Equipamentos',
+        'Técnicas de Pesca',
+        'Técnicas de Pesca',
+        'Técnicas de Pesca'
+    ];
+
+    var historico = JSON.parse(localStorage.getItem('fishingLabHistorico')) || [];
+
+    if (historico.length == 0) {
+        document.getElementById('semDados').style.display = 'block';
+    } else {
+        document.getElementById('comDados').style.display = 'block';
+        montarDashboard();
+    }
+
+    function montarDashboard() {
+        var ultima = historico[historico.length - 1];
+        var melhor = 0;
+
+        for (var i = 0; i < historico.length; i++) {
+            if (historico[i].acertos > melhor) {
+                melhor = historico[i].acertos;
+            }
+        }
+
+        document.getElementById('kpiNota').innerHTML = ultima.acertos + '/10';
+        document.getElementById('kpiPercentual').innerHTML = (ultima.acertos * 10) + '%';
+        document.getElementById('kpiTentativas').innerHTML = historico.length;
+        document.getElementById('kpiMelhor').innerHTML = melhor + '/10';
+
+        var grafico = '';
+        var tentativas = '';
+
+        for (var i = 0; i < historico.length; i++) {
+            var tentativa = historico[i];
+            var valor = tentativa.acertos * 10;
+
+            grafico += '<div class="linha-grafico">';
+            grafico += '<span>Tentativa ' + (i + 1) + '</span>';
+            grafico += '<div class="trilho"><div class="preenchimento" style="width: ' + valor + '%"></div></div>';
+            grafico += '<strong>' + valor + '%</strong></div>';
+        }
+
+        document.getElementById('graficoEvolucao').innerHTML = grafico;
+
+        for (var i = historico.length - 1; i >= 0; i--) {
+            var tentativa = historico[i];
+            var data = new Date(tentativa.data).toLocaleString('pt-BR');
+
+            tentativas += '<div class="linha-tabela">';
+            tentativas += '<span>Tentativa ' + (i + 1) + '</span>';
+            tentativas += '<span>' + data + '</span>';
+            tentativas += '<strong>' + tentativa.acertos + '/10 (' + (tentativa.acertos * 10) + '%)</strong></div>';
+        }
+
+        document.getElementById('historicoTentativas').innerHTML = tentativas;
+
+        var categorias = ['Espécies de Peixes', 'Equipamentos', 'Técnicas de Pesca'];
+        var resultadoCategorias = '';
+
+        for (var i = 0; i < categorias.length; i++) {
+            var acertos = 0;
+            var total = 0;
+
+            for (var j = 0; j < ultima.respostas.length; j++) {
+                if (ultima.respostas[j].categoria == categorias[i]) {
+                    total++;
+
+                    if (ultima.respostas[j].acertou) {
+                        acertos++;
+                    }
+                }
+            }
+
+            var porcentagem = Math.round(acertos / total * 100);
+
+            resultadoCategorias += '<div class="linha-categoria"><strong>' + categorias[i] + '</strong>';
+            resultadoCategorias += '<p>' + acertos + ' de ' + total + ' acertos · ' + porcentagem + '%</p>';
+            resultadoCategorias += '<div class="trilho"><div class="preenchimento" style="width: ' + porcentagem + '%"></div></div></div>';
+        }
+
+        document.getElementById('categorias').innerHTML = resultadoCategorias;
+
+        var erros = [];
+        var acertos = [];
+
+        for (var i = 0; i < 10; i++) {
+            erros.push(0);
+            acertos.push(0);
+        }
+
+        for (var i = 0; i < historico.length; i++) {
+            for (var j = 0; j < historico[i].respostas.length; j++) {
+                var resposta = historico[i].respostas[j];
+                var numero = resposta.id - 1;
+
+                if (resposta.acertou) {
+                    acertos[numero]++;
+                } else {
+                    erros[numero]++;
+                }
+            }
+        }
+
+        var ordem = [];
+
+        for (var i = 0; i < 10; i++) {
+            ordem.push(i);
+        }
+
+        for (var i = 0; i < ordem.length; i++) {
+            for (var j = i + 1; j < ordem.length; j++) {
+                if (erros[ordem[j]] > erros[ordem[i]]) {
+                    var troca = ordem[i];
+                    ordem[i] = ordem[j];
+                    ordem[j] = troca;
+                }
+            }
+        }
+
+        var linhas = '';
+
+        for (var i = 0; i < ordem.length; i++) {
+            var numero = ordem[i];
+
+            linhas += '<div class="linha-questao">';
+            linhas += '<span>Questão ' + (numero + 1) + ' - ' + perguntas[numero] + '<small>' + categoriasPerguntas[numero] + '</small></span>';
+            linhas += '<strong class="erro">' + erros[numero] + '</strong>';
+            linhas += '<strong>' + acertos[numero] + '</strong></div>';
+        }
+
+        document.getElementById('questoesDificeis').innerHTML = linhas;
+    }
+</script>
