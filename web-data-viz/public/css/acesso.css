@@ -1,0 +1,135 @@
+.pagina-acesso {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    padding: 56px 80px;
+    background-color: #FAF9F5;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.convite {
+    width: 560px;
+    background-color: #173F35;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.convite img {
+    display: block;
+    width: 100%;
+    height: 410px;
+    object-fit: cover;
+}
+
+.convite-texto {
+    padding: 34px;
+}
+
+.convite-texto h4 {
+    color: #DAE5D8;
+    font-size: 11px;
+    margin: 0 0 15px;
+}
+
+.convite-texto h2 {
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 31px;
+    font-weight: 500;
+    margin: 0 0 15px;
+}
+
+.convite-texto p {
+    color: #DAE5D8;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.formulario {
+    width: 440px;
+}
+
+.formulario h4 {
+    color: #37664B;
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin: 0 0 15px;
+}
+
+.formulario h1 {
+    color: #173F35;
+    font-family: 'Playfair Display', serif;
+    font-size: 43px;
+    font-weight: 500;
+    margin: 0 0 15px;
+}
+
+.formulario > p {
+    color: #64726A;
+    font-size: 16px;
+    line-height: 1.65;
+    margin: 0 0 25px;
+}
+
+.campo {
+    margin-bottom: 18px;
+}
+
+.campo p {
+    color: #203C33;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 0 9px;
+}
+
+.campo input {
+    width: 100%;
+    box-sizing: border-box;
+    height: 49px;
+    padding: 0 16px;
+    background-color: white;
+    border: 1px solid #DCE1D7;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+}
+
+.campo small {
+    display: block;
+    margin-top: 8px;
+    color: #64726A;
+}
+
+.botao-acesso {
+    width: 100%;
+    padding: 16px;
+    background-color: #173F35;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.formulario .mensagem {
+    color: #B46C51;
+    font-size: 13px;
+    margin: 12px 0;
+}
+
+.link-final {
+    border-top: 1px solid #DCE1D7;
+    padding-top: 22px;
+    margin-top: 24px;
+    text-align: center;
+    color: #64726A;
+    font-size: 13px;
+}
+
+.link-final a {
+    color: #173F35;
+    font-weight: 600;
+}

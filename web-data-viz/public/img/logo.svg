@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 140">
+  <g fill="none" stroke="#173D32" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 70C31 50 53 43 74 51C85 55 94 63 101 70C94 77 85 85 74 89C53 97 31 90 18 70Z"/>
+    <path d="M101 70L118 55V85L101 70Z"/>
+    <path d="M35 74C49 64 62 64 77 73C83 77 89 78 95 75"/>
+  </g>
+  <circle cx="70" cy="62" r="2.5" fill="#173D32"/>
+  <text x="154" y="84" fill="#173D32" font-family="Manrope, Arial, sans-serif" font-size="48" font-weight="600" letter-spacing="-1.5">Fishing Lab</text>
+</svg>

@@ -35,3 +35,9 @@ CREATE TABLE resposta (
         FOREIGN KEY (fkTentativa)
         REFERENCES tentativa(idTentativa)
 );
+
+SELECT * FROM usuario;
+SELECT * FROM tentativa;
+SELECT * FROM resposta;
+
+truncate usuario;

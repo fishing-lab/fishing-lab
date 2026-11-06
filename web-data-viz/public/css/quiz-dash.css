@@ -1,0 +1,403 @@
+body {
+    background-color: #FAF9F5;
+}
+
+.pagina {
+    max-width: 1440px;
+    margin: auto;
+    padding: 45px 120px 100px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.pagina h1, .pagina h2, .pagina h3, .pagina p {
+    margin-top: 0;
+}
+
+.pagina h1, .pagina h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+}
+
+.pagina h1 {
+    font-size: 48px;
+    line-height: 1.2;
+    margin: 20px 0;
+}
+
+.pagina h2 {
+    font-size: 32px;
+    margin: 10px 0 15px;
+}
+
+.pagina h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.pagina h4 {
+    color: #49745A;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin: 0 0 15px;
+}
+
+.pagina p {
+    color: #6D736E;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.caminho {
+    color: #7C8880;
+    font-size: 13px;
+    margin-bottom: 55px;
+}
+
+.pagina-inicio {
+    max-width: 850px;
+    padding-bottom: 55px;
+    border-bottom: 1px solid #DCE1D7;
+    margin-bottom: 55px;
+}
+
+.pagina-inicio p {
+    font-size: 18px;
+}
+
+.informacoes {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.informacoes span {
+    background-color: #E8EDE5;
+    color: #173D32;
+    padding: 10px 15px;
+    border-radius: 25px;
+}
+
+.titulo-bloco {
+    margin-bottom: 30px;
+}
+
+.pergunta, .painel, .kpi, .resultado, .vazio {
+    background-color: white;
+    border: 1px solid #DCE1D7;
+    border-radius: 16px;
+}
+
+.pergunta {
+    padding: 35px 40px;
+    margin-bottom: 20px;
+}
+
+.pergunta-topo {
+    display: flex;
+    justify-content: space-between;
+    color: #49745A;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.pergunta h3 {
+    margin-bottom: 25px;
+}
+
+.opcao {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #DCE1D7;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 10px;
+}
+
+.opcao:hover {
+    background-color: #F6F7F2;
+}
+
+.opcao input {
+    accent-color: #173D32;
+}
+
+.opcao span {
+    cursor: pointer;
+    color: #173D32;
+    width: 100%;
+}
+
+.finalizar {
+    text-align: right;
+    padding: 25px 0;
+}
+
+#aviso, .erro {
+    color: #B46C51;
+}
+
+.botao-verde, .botao-claro {
+    display: inline-block;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.botao-verde {
+    background-color: #173D32;
+    color: white;
+    border: none;
+}
+
+.botao-claro {
+    background-color: white;
+    color: #173D32;
+    border: 1px solid #DCE1D7;
+}
+
+.resultado, .vazio {
+    text-align: center;
+    padding: 55px;
+}
+
+.resultado-numeros {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    margin: 30px 0;
+}
+
+.resultado-numeros span {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 500;
+}
+
+.trilho {
+    height: 12px;
+    background-color: #E8EDE5;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.preenchimento {
+    height: 100%;
+    background-color: #173D32;
+    border-radius: 12px;
+}
+
+.acoes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.kpis {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.kpi {
+    flex: 1;
+    padding: 25px;
+}
+
+.kpi span {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 500;
+    margin: 15px 0;
+}
+
+.bloco-duplo {
+    display: flex;
+    gap: 25px;
+}
+
+.bloco-duplo .painel {
+    width: 50%;
+}
+
+.painel {
+    padding: 30px;
+    margin-bottom: 25px;
+}
+
+.painel h2 {
+    font-size: 28px;
+}
+
+
+/* GRÁFICOS DA DASHBOARD COM CHART.JS */
+
+.area-grafico {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    margin-top: 25px;
+}
+
+
+/* TABELAS DA DASHBOARD */
+
+.cabecalho-linha, .linha-tabela, .linha-questao {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    border-bottom: 1px solid #DCE1D7;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+}
+
+.cabecalho-linha {
+    background-color: #E8EDE5;
+    font-size: 13px;
+}
+
+.cabecalho-linha span {
+    font-weight: 600;
+}
+
+
+/* QUESTÕES COM MAIS DIFICULDADE */
+
+.cabecalho-questoes, .linha-questao {
+    gap: 0;
+}
+
+.cabecalho-questoes span:first-child,
+.linha-questao span:first-child {
+    width: 70%;
+    flex: none;
+    text-align: left;
+}
+
+.cabecalho-questoes span:nth-child(2),
+.cabecalho-questoes span:nth-child(3),
+.linha-questao span:not(:first-child) {
+    width: 15%;
+    flex: none;
+    text-align: center;
+}
+
+.linha-questao small {
+    display: block;
+    color: #6D736E;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+
+/* HISTÓRICO DE TENTATIVAS */
+
+.linha-tabela span {
+    flex: 1;
+}
+
+.linha-tabela span:nth-child(2) {
+    text-align: center;
+}
+
+.linha-tabela span:last-child {
+    text-align: center;
+}
+
+.cabecalho-linha:not(.cabecalho-questoes) span {
+    flex: 1;
+}
+
+.cabecalho-linha:not(.cabecalho-questoes) span:nth-child(2) {
+    text-align: center;
+}
+
+.cabecalho-linha:not(.cabecalho-questoes) span:nth-child(3) {
+    text-align: center;
+}
+
+
+/* FINAL DA DASHBOARD */
+
+.chamada-final {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+
+/* CORES DAS FONTES - QUIZ E DASHBOARD */
+
+.pagina h1, .pagina h2, .pagina h3 {
+    color: #173D32;
+}
+
+.pagina h4 {
+    color: #49745A;
+}
+
+.pagina p {
+    color: #6D736E;
+}
+
+.pergunta, .opcao, .kpi, .painel {
+    color: #173D32;
+}
+
+.linha-tabela, .linha-questao {
+    color: #173D32;
+}
+
+.pergunta-topo {
+    color: #49745A;
+}
+
+.linha-questao small {
+    color: #6D736E;
+}
+
+
+/* QUESTÃO ÚNICA DO QUIZ */
+
+.placar-quiz {
+    display: flex;
+    gap: 25px;
+    color: #173D32;
+    margin-bottom: 20px;
+}
+
+.botoes-quiz {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.botoes-quiz button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.opcao-certa {
+    background-color: #E8EDE5;
+    border-color: #49745A;
+}
+
+.opcao-errada {
+    background-color: #F9E8E3;
+    border-color: #B46C51;
+}
+
+.resultado #mensagemResultado {
+    margin-top: 25px;
+}
