@@ -1,11 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./quiz-dash.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/quiz-dash.css">
     <link rel="icon" href="./img/icon.svg">
     <title>Quiz - Fishing Lab</title>
 </head>
@@ -44,276 +45,53 @@
             </div>
         </div>
 
-        <div id="areaQuiz">
-            <div class="titulo-bloco">
-                <h4>O DESAFIO</h4>
-                <h2>O que você aprendeu?</h2>
-                <p>Selecione uma alternativa em cada questão. O resultado aparece ao final.</p>
+        <div id="inicioQuiz" class="titulo-bloco">
+            <h4>O DESAFIO</h4>
+            <h2>O que você aprendeu?</h2>
+            <p>Responda uma questão por vez</p>
+            <button class="botao-verde" onclick="iniciarQuiz()">Iniciar Quiz →</button>
+        </div>
+
+        <div id="areaQuiz" style="display: none;">
+            <div class="placar-quiz">
+                <span>Acertos: <span id="spanCertas">0</span></span>
+                <span>Erros: <span id="spanErradas">0</span></span>
             </div>
 
             <div class="pergunta">
                 <div class="pergunta-topo">
-                    <span>Espécies de Peixes</span>
-                    <span>QUESTÃO 01 / 10</span>
+                    <span id="spanCategoria"></span>
+                    <span>QUESTÃO <span id="spanNumeroDaQuestaoAtual">1</span> / <span id="qtdQuestoes">10</span></span>
                 </div>
 
-                <h3>Qual é uma das principais características do tucunaré?</h3>
+                <h3 id="spanQuestaoExibida"></h3>
 
-                <div class="opcao">
-                    <input type="radio" name="questao1" value="A" id="q1A">
-                    <label for="q1A">A - Comportamento calmo durante a captura</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao1" value="B" id="q1B">
-                    <label for="q1B">B - Força e comportamento agressivo</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao1" value="C" id="q1C">
-                    <label for="q1C">C - Hábito de viver exclusivamente no mar</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao1" value="D" id="q1D">
-                    <label for="q1D">D - Alimentação baseada apenas em plantas</label>
-                </div>
-            </div>
-
-            <div class="pergunta">
-                <div class="pergunta-topo">
-                    <span>Espécies de Peixes</span>
-                    <span>QUESTÃO 02 / 10</span>
+                <div class="opcao" id="caixaA">
+                    <input type="radio" name="option" id="primeiraOpcao" value="alternativaA">
+                    <span id="labelOpcaoUm" onclick="primeiraOpcao.click()"></span>
                 </div>
 
-                <h3>Em quais ambientes o tucunaré pode ser encontrado?</h3>
-
-                <div class="opcao">
-                    <input type="radio" name="questao2" value="A" id="q2A">
-                    <label for="q2A">A - Oceanos e recifes de coral</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao2" value="B" id="q2B">
-                    <label for="q2B">B - Apenas em águas salgadas</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao2" value="C" id="q2C">
-                    <label for="q2C">C - Rios, lagos e represas</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao2" value="D" id="q2D">
-                    <label for="q2D">D - Exclusivamente em manguezais</label>
-                </div>
-            </div>
-
-            <div class="pergunta">
-                <div class="pergunta-topo">
-                    <span>Espécies de Peixes</span>
-                    <span>QUESTÃO 03 / 10</span>
+                <div class="opcao" id="caixaB">
+                    <input type="radio" name="option" id="segundaOpcao" value="alternativaB">
+                    <span id="labelOpcaoDois" onclick="segundaOpcao.click()"></span>
                 </div>
 
-                <h3>Qual é o nome científico utilizado para identificar o grupo dos tucunarés?</h3>
-
-                <div class="opcao">
-                    <input type="radio" name="questao3" value="A" id="q3A">
-                    <label for="q3A">A - Cichla spp.</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao3" value="B" id="q3B">
-                    <label for="q3B">B - Oreochromis niloticus</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao3" value="C" id="q3C">
-                    <label for="q3C">C - Cyprinus carpio</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao3" value="D" id="q3D">
-                    <label for="q3D">D - Piaractus mesopotamicus</label>
-                </div>
-            </div>
-
-            <div class="pergunta">
-                <div class="pergunta-topo">
-                    <span>Espécies de Peixes</span>
-                    <span>QUESTÃO 04 / 10</span>
+                <div class="opcao" id="caixaC">
+                    <input type="radio" name="option" id="terceiraOpcao" value="alternativaC">
+                    <span id="labelOpcaoTres" onclick="terceiraOpcao.click()"></span>
                 </div>
 
-                <h3>Qual das espécies abaixo é conhecida por ser um peixe de água doce?</h3>
-
-                <div class="opcao">
-                    <input type="radio" name="questao4" value="A" id="q4A">
-                    <label for="q4A">A - Sardinha oceânica</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao4" value="B" id="q4B">
-                    <label for="q4B">B - Atum</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao4" value="C" id="q4C">
-                    <label for="q4C">C - Robalo-flecha</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao4" value="D" id="q4D">
-                    <label for="q4D">D - Tilápia</label>
-                </div>
-            </div>
-
-            <div class="pergunta">
-                <div class="pergunta-topo">
-                    <span>Equipamentos</span>
-                    <span>QUESTÃO 05 / 10</span>
+                <div class="opcao" id="caixaD">
+                    <input type="radio" name="option" id="quartaOpcao" value="alternativaD">
+                    <span id="labelOpcaoQuatro" onclick="quartaOpcao.click()"></span>
                 </div>
 
-                <h3>Qual é a principal função de uma vara de pesca?</h3>
-
-                <div class="opcao">
-                    <input type="radio" name="questao5" value="A" id="q5A">
-                    <label for="q5A">A - Armazenar as iscas utilizadas</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao5" value="B" id="q5B">
-                    <label for="q5B">B - Auxiliar no arremesso e controle do peixe</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao5" value="C" id="q5C">
-                    <label for="q5C">C - Medir a temperatura da água</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao5" value="D" id="q5D">
-                    <label for="q5D">D - Identificar a espécie capturada</label>
-                </div>
-            </div>
-
-            <div class="pergunta">
-                <div class="pergunta-topo">
-                    <span>Equipamentos</span>
-                    <span>QUESTÃO 06 / 10</span>
-                </div>
-
-                <h3>Qual equipamento permite armazenar e recolher a linha de pesca?</h3>
-
-                <div class="opcao">
-                    <input type="radio" name="questao6" value="A" id="q6A">
-                    <label for="q6A">A - Chumbada</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao6" value="B" id="q6B">
-                    <label for="q6B">B - Boia</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao6" value="C" id="q6C">
-                    <label for="q6C">C - Molinete</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao6" value="D" id="q6D">
-                    <label for="q6D">D - Anzol</label>
-                </div>
-            </div>
-
-            <div class="pergunta">
-                <div class="pergunta-topo">
-                    <span>Equipamentos</span>
-                    <span>QUESTÃO 07 / 10</span>
-                </div>
-
-                <h3>O que deve ser considerado na escolha da linha de pesca?</h3>
-
-                <div class="opcao">
-                    <input type="radio" name="questao7" value="A" id="q7A">
-                    <label for="q7A">A - Apenas a cor da embalagem</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao7" value="B" id="q7B">
-                    <label for="q7B">B - Somente o comprimento da vara</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao7" value="C" id="q7C">
-                    <label for="q7C">C - Apenas a marca do equipamento</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao7" value="D" id="q7D">
-                    <label for="q7D">D - A resistência da linha e o peixe desejado</label>
-                </div>
-            </div>
-
-            <div class="pergunta">
-                <div class="pergunta-topo">
-                    <span>Técnicas de Pesca</span>
-                    <span>QUESTÃO 08 / 10</span>
-                </div>
-
-                <h3>Qual é o objetivo de utilizar iscas artificiais na pescaria?</h3>
-
-                <div class="opcao">
-                    <input type="radio" name="questao8" value="A" id="q8A">
-                    <label for="q8A">A - Imitar presas e estimular o ataque dos peixes</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao8" value="B" id="q8B">
-                    <label for="q8B">B - Aumentar automaticamente a resistência da linha</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao8" value="C" id="q8C">
-                    <label for="q8C">C - Impedir que os peixes se aproximem</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao8" value="D" id="q8D">
-                    <label for="q8D">D - Substituir a necessidade de utilizar anzóis</label>
-                </div>
-            </div>
-
-            <div class="pergunta">
-                <div class="pergunta-topo">
-                    <span>Técnicas de Pesca</span>
-                    <span>QUESTÃO 09 / 10</span>
-                </div>
-
-                <h3>Na pesca com iscas artificiais, o que significa trabalhar a isca?</h3>
-
-                <div class="opcao">
-                    <input type="radio" name="questao9" value="A" id="q9A">
-                    <label for="q9A">A - Deixar a vara guardada durante a pescaria</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao9" value="B" id="q9B">
-                    <label for="q9B">B - Movimentar a isca para simular uma presa</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao9" value="C" id="q9C">
-                    <label for="q9C">C - Retirar toda a linha do equipamento</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao9" value="D" id="q9D">
-                    <label for="q9D">D - Manter a isca sempre fora da água</label>
-                </div>
-            </div>
-
-            <div class="pergunta">
-                <div class="pergunta-topo">
-                    <span>Técnicas de Pesca</span>
-                    <span>QUESTÃO 10 / 10</span>
-                </div>
-
-                <h3>Por que variar a velocidade de recolhimento de uma isca artificial?</h3>
-
-                <div class="opcao">
-                    <input type="radio" name="questao10" value="A" id="q10A">
-                    <label for="q10A">A - Para alterar a espécie do peixe capturado</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao10" value="B" id="q10B">
-                    <label for="q10B">B - Para eliminar a necessidade de arremessos</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao10" value="C" id="q10C">
-                    <label for="q10C">C - Para modificar o movimento da isca e atrair os peixes</label>
-                </div>
-                <div class="opcao">
-                    <input type="radio" name="questao10" value="D" id="q10D">
-                    <label for="q10D">D - Para impedir que a isca se movimente</label>
-                </div>
-            </div>
-
-            <div class="finalizar">
                 <p id="aviso"></p>
-                <button class="botao-verde" onclick="finalizarQuiz()">Finalizar quiz →</button>
+
+                <div class="botoes-quiz">
+                    <button class="botao-verde" id="btnSubmeter" onclick="submeter()">Submeter resposta</button>
+                    <button class="botao-claro" id="btnProx" onclick="avancar()" disabled>Próxima questão →</button>
+                </div>
             </div>
         </div>
 
@@ -324,11 +102,11 @@
 
             <div class="resultado-numeros">
                 <div>
-                    <strong id="nota">0/10</strong>
+                    <span id="nota">0/10</span>
                     <p>Respostas certas</p>
                 </div>
                 <div>
-                    <strong id="percentual">0%</strong>
+                    <span id="percentual">0%</span>
                     <p>Aproveitamento</p>
                 </div>
             </div>
@@ -337,12 +115,11 @@
                 <div class="preenchimento" id="barraNota"></div>
             </div>
 
-            <h3 id="mensagem"></h3>
-            <p>Você pode acompanhar sua evolução na Dashboard.</p>
+            <h3 id="mensagemResultado"></h3>
 
             <div class="acoes">
-                <a class="botao-verde" href="dashboard.html">Ver minha Dashboard →</a>
-                <button class="botao-claro" onclick="refazerQuiz()">Refazer quiz</button>
+                <button class="botao-claro" onclick="tentarNovamente()">Refazer Quiz</button>
+                <a class="botao-verde" href="dashboard.html">Minha Dashboard →</a>
             </div>
         </div>
     </main>
@@ -364,82 +141,259 @@
     </footer>
 </body>
 </html>
-
 <script>
-    var respostasCertas = ['B', 'C', 'A', 'D', 'B', 'C', 'D', 'A', 'B', 'C'];
-    var categorias = ['Espécies de Peixes', 'Espécies de Peixes', 'Espécies de Peixes', 'Espécies de Peixes', 'Equipamentos', 'Equipamentos', 'Equipamentos', 'Técnicas de Pesca', 'Técnicas de Pesca', 'Técnicas de Pesca'];
-
-    var aviso = document.getElementById('aviso');
-    var nota = document.getElementById('nota');
-    var percentual = document.getElementById('percentual');
-    var barraNota = document.getElementById('barraNota');
-    var mensagem = document.getElementById('mensagem');
-    var areaQuiz = document.getElementById('areaQuiz');
-    var resultado = document.getElementById('resultado');
-
-    function finalizarQuiz() {
-        var acertos = 0;
-        var respostas = [];
-
-        for (var i = 1; i <= 10; i++) {
-            var marcada = document.querySelector('input[name="questao' + i + '"]:checked');
-
-            if (marcada == null) {
-                aviso.innerHTML = 'Responda todas as 10 perguntas antes de finalizar.';
-                return;
-            }
-
-            var acertou = marcada.value == respostasCertas[i - 1];
-
-            if (acertou) {
-                acertos++;
-            }
-
-            respostas.push({id: i, categoria: categorias[i - 1], acertou: acertou});
+    let listaDeQuestoes = [
+        {
+            id: 1,
+            categoria: "Espécies de Peixes",
+            pergunta: "Qual é uma das principais características do tucunaré?",
+            alternativaA: "Comportamento calmo durante a captura",
+            alternativaB: "Força e comportamento agressivo",
+            alternativaC: "Hábito de viver exclusivamente no mar",
+            alternativaD: "Alimentação baseada apenas em plantas",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            id: 2,
+            categoria: "Espécies de Peixes",
+            pergunta: "Em quais ambientes o tucunaré pode ser encontrado?",
+            alternativaA: "Oceanos e recifes de coral",
+            alternativaB: "Apenas em águas salgadas",
+            alternativaC: "Rios, lagos e represas",
+            alternativaD: "Exclusivamente em manguezais",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            id: 3,
+            categoria: "Espécies de Peixes",
+            pergunta: "Qual cuidado é importante ao manusear um peixe após a captura?",
+            alternativaA: "Segurá-lo pelas brânquias",
+            alternativaB: "Deixá-lo fora da água por vários minutos",
+            alternativaC: "Manuseá-lo com as mãos molhadas, evitando machucar sua pele",
+            alternativaD: "Colocá-lo diretamente sobre uma superfície seca",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            id: 4,
+            categoria: "Espécies de Peixes",
+            pergunta: "Qual das espécies abaixo é conhecida por ser um peixe de água doce?",
+            alternativaA: "Sardinha oceânica",
+            alternativaB: "Atum",
+            alternativaC: "Robalo-flecha",
+            alternativaD: "Tilápia",
+            alternativaCorreta: "alternativaD"
+        },
+        {
+            id: 5,
+            categoria: "Equipamentos",
+            pergunta: "Qual é a principal função de uma vara de pesca?",
+            alternativaA: "Armazenar as iscas utilizadas",
+            alternativaB: "Auxiliar no arremesso e controle do peixe",
+            alternativaC: "Medir a temperatura da água",
+            alternativaD: "Identificar a espécie capturada",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            id: 6,
+            categoria: "Equipamentos",
+            pergunta: "Qual equipamento permite armazenar e recolher a linha de pesca?",
+            alternativaA: "Chumbada",
+            alternativaB: "Boia",
+            alternativaC: "Molinete",
+            alternativaD: "Anzol",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            id: 7,
+            categoria: "Equipamentos",
+            pergunta: "O que deve ser considerado na escolha da linha de pesca?",
+            alternativaA: "Apenas a cor da embalagem",
+            alternativaB: "Somente o comprimento da vara",
+            alternativaC: "Apenas a marca do equipamento",
+            alternativaD: "A resistência da linha e o peixe desejado",
+            alternativaCorreta: "alternativaD"
+        },
+        {
+            id: 8,
+            categoria: "Técnicas de Pesca",
+            pergunta: "Qual é o objetivo de utilizar iscas artificiais na pescaria?",
+            alternativaA: "Imitar presas e estimular o ataque dos peixes",
+            alternativaB: "Aumentar automaticamente a resistência da linha",
+            alternativaC: "Impedir que os peixes se aproximem",
+            alternativaD: "Substituir a necessidade de utilizar anzóis",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            id: 9,
+            categoria: "Técnicas de Pesca",
+            pergunta: "Na pesca com iscas artificiais, o que significa trabalhar a isca?",
+            alternativaA: "Deixar a vara guardada durante a pescaria",
+            alternativaB: "Movimentar a isca para simular uma presa",
+            alternativaC: "Retirar toda a linha do equipamento",
+            alternativaD: "Manter a isca sempre fora da água",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            id: 10,
+            categoria: "Técnicas de Pesca",
+            pergunta: "Por que variar a velocidade de recolhimento de uma isca artificial?",
+            alternativaA: "Para alterar a espécie do peixe capturado",
+            alternativaB: "Para eliminar a necessidade de arremessos",
+            alternativaC: "Para modificar o movimento da isca e atrair os peixes",
+            alternativaD: "Para impedir que a isca se movimente",
+            alternativaCorreta: "alternativaC"
         }
+    ];
 
-        var historico = JSON.parse(localStorage.getItem('fishingLabHistorico')) || [];
+    let numeroDaQuestaoAtual = 0;
+    let certas = 0;
+    let erradas = 0;
+    let respostasDaTentativa = [];
+    let quantidadeDeQuestoes = listaDeQuestoes.length;
 
-        historico.push({
-            data: new Date().toISOString(),
-            acertos: acertos,
-            total: 10,
-            respostas: respostas
-        });
+    function iniciarQuiz() {
+        inicioQuiz.style.display = 'none';
+        areaQuiz.style.display = 'block';
+        qtdQuestoes.innerHTML = quantidadeDeQuestoes;
 
-        localStorage.setItem('fishingLabHistorico', JSON.stringify(historico));
+        preencherHTMLcomQuestaoAtual(0);
+    }
 
-        nota.innerHTML = acertos + '/10';
-        percentual.innerHTML = (acertos * 10) + '%';
-        barraNota.style.width = (acertos * 10) + '%';
+    function preencherHTMLcomQuestaoAtual(index) {
+        let questaoAtual = listaDeQuestoes[index];
 
-        if (acertos >= 8) {
-            mensagem.innerHTML = 'Muito bem! Você está no caminho certo.';
-        } else if (acertos >= 5) {
-            mensagem.innerHTML = 'Bom trabalho! Cada pescaria é uma oportunidade de aprender.';
-        } else {
-            mensagem.innerHTML = 'Continue explorando nossos guias e aprendendo!';
-        }
+        numeroDaQuestaoAtual = index;
+
+        spanNumeroDaQuestaoAtual.innerHTML = index + 1;
+        spanCategoria.innerHTML = questaoAtual.categoria;
+        spanQuestaoExibida.innerHTML = questaoAtual.pergunta;
+
+        labelOpcaoUm.innerHTML = 'A - ' + questaoAtual.alternativaA;
+        labelOpcaoDois.innerHTML = 'B - ' + questaoAtual.alternativaB;
+        labelOpcaoTres.innerHTML = 'C - ' + questaoAtual.alternativaC;
+        labelOpcaoQuatro.innerHTML = 'D - ' + questaoAtual.alternativaD;
+
+        primeiraOpcao.checked = false;
+        segundaOpcao.checked = false;
+        terceiraOpcao.checked = false;
+        quartaOpcao.checked = false;
+
+        habilitarAlternativas(true);
+
+        caixaA.className = 'opcao';
+        caixaB.className = 'opcao';
+        caixaC.className = 'opcao';
+        caixaD.className = 'opcao';
 
         aviso.innerHTML = '';
+        btnSubmeter.disabled = false;
+        btnProx.disabled = true;
+
+        if (index == quantidadeDeQuestoes - 1) {
+            btnProx.innerHTML = 'Ver resultado →';
+        } else {
+            btnProx.innerHTML = 'Próxima questão →';
+        }
+    }
+
+    function habilitarAlternativas(habilitar) {
+        primeiraOpcao.disabled = !habilitar;
+        segundaOpcao.disabled = !habilitar;
+        terceiraOpcao.disabled = !habilitar;
+        quartaOpcao.disabled = !habilitar;
+    }
+
+    function submeter() {
+        let marcada = document.querySelector('input[name="option"]:checked');
+
+        if (marcada == null) {
+            aviso.innerHTML = 'Escolha uma alternativa antes de continuar.';
+        } else {
+            checarResposta(marcada.value);
+            habilitarAlternativas(false);
+
+            btnSubmeter.disabled = true;
+            btnProx.disabled = false;
+        }
+    }
+
+    function checarResposta(alternativaEscolhida) {
+        let questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual];
+        let acertou = alternativaEscolhida == questaoAtual.alternativaCorreta;
+
+        if (acertou) {
+            certas++;
+            spanCertas.innerHTML = certas;
+            aviso.innerHTML = '<span style="color: Green">Resposta correta! <span>';
+        } else {
+            erradas++;
+            spanErradas.innerHTML = erradas;
+            aviso.innerHTML = 'Resposta incorreta. Veja a alternativa correta em verde.';
+        }
+
+        if (alternativaEscolhida == 'alternativaA' && !acertou) {
+            caixaA.className = 'opcao opcao-errada';
+        }
+        if (alternativaEscolhida == 'alternativaB' && !acertou) {
+            caixaB.className = 'opcao opcao-errada';
+        }
+        if (alternativaEscolhida == 'alternativaC' && !acertou) {
+            caixaC.className = 'opcao opcao-errada';
+        }
+        if (alternativaEscolhida == 'alternativaD' && !acertou) {
+            caixaD.className = 'opcao opcao-errada';
+        }
+
+        if (questaoAtual.alternativaCorreta == 'alternativaA') {
+            caixaA.className = 'opcao opcao-certa';
+        }
+        if (questaoAtual.alternativaCorreta == 'alternativaB') {
+            caixaB.className = 'opcao opcao-certa';
+        }
+        if (questaoAtual.alternativaCorreta == 'alternativaC') {
+            caixaC.className = 'opcao opcao-certa';
+        }
+        if (questaoAtual.alternativaCorreta == 'alternativaD') {
+            caixaD.className = 'opcao opcao-certa';
+        }
+
+        respostasDaTentativa.push({
+            numeroQuestao: questaoAtual.id,
+            alternativaEscolhida: alternativaEscolhida,
+            acertou: acertou
+        });
+    }
+
+    function avancar() {
+        if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual + 1);
+        } else {
+            finalizarJogo();
+        }
+    }
+
+    function finalizarJogo() {
+        let porcentagem = Math.round(certas / quantidadeDeQuestoes * 100);
+
+        nota.innerHTML = certas + '/' + quantidadeDeQuestoes;
+        percentual.innerHTML = porcentagem + '%';
+        barraNota.style.width = porcentagem + '%';
+
+        if (certas >= 8) {
+            mensagemResultado.innerHTML = 'Muito bem! Você está no caminho certo.';
+        } else if (certas >= 5) {
+            mensagemResultado.innerHTML = 'Bom trabalho! Cada pescaria é uma oportunidade de aprender.';
+        } else {
+            mensagemResultado.innerHTML = 'Continue explorando nossos guias e aprendendo!';
+        }
+
         areaQuiz.style.display = 'none';
         resultado.style.display = 'block';
 
         window.scrollTo(0, 0);
     }
 
-    function refazerQuiz() {
-        for (var i = 1; i <= 10; i++) {
-            var opcoes = document.getElementsByName('questao' + i);
-
-            for (var j = 0; j < opcoes.length; j++) {
-                opcoes[j].checked = false;
-            }
-        }
-
-        resultado.style.display = 'none';
-        areaQuiz.style.display = 'block';
-
-        window.scrollTo(0, 0);
+    function tentarNovamente() {
+        window.location.reload();
     }
 </script>

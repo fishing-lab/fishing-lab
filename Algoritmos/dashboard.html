@@ -1,11 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./quiz-dash.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/quiz-dash.css">
     <link rel="icon" href="./img/icon.svg">
     <title>Dashboard - Fishing Lab</title>
 </head>
@@ -30,6 +31,11 @@
     </header>
 
     <main class="pagina">
+        <div class="vazio" id="semDados">
+            <h4>ÁREA DO USUÁRIO</h4>
+            <h2>Minha Dashboard</h2>
+            <a class="botao-verde" href="login.html">Ir para Login →</a>
+        </div>
 
         <div id="comDados" style="display: none;">
             <div class="titulo-bloco">
@@ -41,25 +47,25 @@
             <div class="kpis">
                 <div class="kpi">
                     <h4>ÚLTIMA PONTUAÇÃO</h4>
-                    <strong id="kpiNota">0/10</strong>
+                    <span id="kpiNota">0/10</span>
                     <p>Respostas corretas</p>
                 </div>
 
                 <div class="kpi">
                     <h4>APROVEITAMENTO</h4>
-                    <strong id="kpiPercentual">0%</strong>
+                    <span id="kpiPercentual">0%</span>
                     <p>Na última tentativa</p>
                 </div>
 
                 <div class="kpi">
                     <h4>TENTATIVAS REALIZADAS</h4>
-                    <strong id="kpiTentativas">0</strong>
+                    <span id="kpiTentativas">0</span>
                     <p>Ao longo das tentativas</p>
                 </div>
 
                 <div class="kpi">
                     <h4>MELHOR RESULTADO</h4>
-                    <strong id="kpiMelhor">0/10</strong>
+                    <span id="kpiMelhor">0/10</span>
                     <p>Seu maior número de acertos</p>
                 </div>
             </div>
@@ -86,9 +92,9 @@
                 <p>Questões organizadas pela quantidade de erros nas suas tentativas.</p>
 
                 <div class="cabecalho-linha cabecalho-questoes">
-                    <strong>QUESTÃO</strong>
-                    <strong>ERROS</strong>
-                    <strong>ACERTOS</strong>
+                    <span>QUESTÃO</span>
+                    <span>ERROS</span>
+                    <span>ACERTOS</span>
                 </div>
 
                 <div id="questoesDificeis"></div>
@@ -100,9 +106,9 @@
                 <p>Confira os resultados de cada vez que você respondeu ao quiz.</p>
 
                 <div class="cabecalho-linha">
-                    <strong>TENTATIVA</strong>
-                    <strong>DATA</strong>
-                    <strong>RESULTADO</strong>
+                    <span>TENTATIVA</span>
+                    <span>DATA</span>
+                    <span>RESULTADO</span>
                 </div>
 
                 <div id="historicoTentativas"></div>
@@ -131,22 +137,21 @@
     </footer>
 </body>
 </html>
-
 <script>
-    var perguntas = [
-        'Qual é uma das principais características do tucunaré?',
-        'Em quais ambientes o tucunaré pode ser encontrado?',
-        'Qual é o nome científico utilizado para identificar o grupo dos tucunarés?',
-        'Qual das espécies abaixo é conhecida por ser um peixe de água doce?',
-        'Qual é a principal função de uma vara de pesca?',
-        'Qual equipamento permite armazenar e recolher a linha de pesca?',
-        'O que deve ser considerado na escolha da linha de pesca?',
-        'Qual é o objetivo de utilizar iscas artificiais na pescaria?',
-        'Na pesca com iscas artificiais, o que significa trabalhar a isca?',
-        'Por que variar a velocidade de recolhimento de uma isca artificial?'
+    let perguntas = [
+        "Qual é uma das principais características do tucunaré?",
+        "Em quais ambientes o tucunaré pode ser encontrado?",
+        "Qual cuidado é importante ao manusear um peixe após a captura?",
+        "Qual das espécies abaixo é conhecida por ser um peixe de água doce?",
+        "Qual é a principal função de uma vara de pesca?",
+        "Qual equipamento permite armazenar e recolher a linha de pesca?",
+        "O que deve ser considerado na escolha da linha de pesca?",
+        "Qual é o objetivo de utilizar iscas artificiais na pescaria?",
+        "Na pesca com iscas artificiais, o que significa trabalhar a isca?",
+        "Por que variar a velocidade de recolhimento de uma isca artificial?"
     ];
 
-    var categoriasPerguntas = [
+    let categoriasPerguntas = [
         'Espécies de Peixes',
         'Espécies de Peixes',
         'Espécies de Peixes',
@@ -159,131 +164,139 @@
         'Técnicas de Pesca'
     ];
 
-    var historico = JSON.parse(localStorage.getItem('fishingLabHistorico')) || [];
+    function montarDashboard(historico) {
+        if (historico.length == 0) {
+            semDados.innerHTML = '<h2>Nenhuma tentativa encontrada.</h2><p>Responda ao Quiz para começar seu histórico.</p><a class="botao-verde" href="quiz.html">Ir para o Quiz →</a>';
+            return;
+        }
 
-    if (historico.length == 0) {
-        document.getElementById('semDados').style.display = 'block';
-    } else {
-        document.getElementById('comDados').style.display = 'block';
-        montarDashboard();
-    }
+        semDados.style.display = 'none';
+        comDados.style.display = 'block';
 
-    function montarDashboard() {
-        var ultima = historico[historico.length - 1];
-        var melhor = 0;
+        let ultima = historico[historico.length - 1];
+        let melhor = 0;
 
-        for (var i = 0; i < historico.length; i++) {
+        for (let i = 0; i < historico.length; i++) {
             if (historico[i].acertos > melhor) {
                 melhor = historico[i].acertos;
             }
         }
 
-        document.getElementById('kpiNota').innerHTML = ultima.acertos + '/10';
-        document.getElementById('kpiPercentual').innerHTML = (ultima.acertos * 10) + '%';
-        document.getElementById('kpiTentativas').innerHTML = historico.length;
-        document.getElementById('kpiMelhor').innerHTML = melhor + '/10';
+        kpiNota.innerHTML = ultima.acertos + '/10';
+        kpiPercentual.innerHTML = (ultima.acertos * 10) + '%';
+        kpiTentativas.innerHTML = historico.length;
+        kpiMelhor.innerHTML = melhor + '/10';
 
-        var grafico = '';
-        var tentativas = '';
+        let grafico = '';
+        let tentativas = '';
 
-        for (var i = 0; i < historico.length; i++) {
-            var tentativa = historico[i];
-            var valor = tentativa.acertos * 10;
+        for (let i = 0; i < historico.length; i++) {
+            let tentativa = historico[i];
+            let valor = tentativa.acertos * 10;
 
             grafico += '<div class="linha-grafico">';
             grafico += '<span>Tentativa ' + (i + 1) + '</span>';
             grafico += '<div class="trilho"><div class="preenchimento" style="width: ' + valor + '%"></div></div>';
-            grafico += '<strong>' + valor + '%</strong></div>';
+            grafico += '<span>' + valor + '%</span></div>';
         }
 
-        document.getElementById('graficoEvolucao').innerHTML = grafico;
+        graficoEvolucao.innerHTML = grafico;
 
-        for (var i = historico.length - 1; i >= 0; i--) {
-            var tentativa = historico[i];
-            var data = new Date(tentativa.data).toLocaleString('pt-BR');
+        for (let i = historico.length - 1; i >= 0; i--) {
+            let tentativa = historico[i];
+            let data = new Date(tentativa.dataHora).toLocaleString('pt-BR');
 
             tentativas += '<div class="linha-tabela">';
             tentativas += '<span>Tentativa ' + (i + 1) + '</span>';
             tentativas += '<span>' + data + '</span>';
-            tentativas += '<strong>' + tentativa.acertos + '/10 (' + (tentativa.acertos * 10) + '%)</strong></div>';
+            tentativas += '<span>' + tentativa.acertos + '/10 (' + (tentativa.acertos * 10) + '%)</span></div>';
         }
 
-        document.getElementById('historicoTentativas').innerHTML = tentativas;
+        historicoTentativas.innerHTML = tentativas;
 
-        var categorias = ['Espécies de Peixes', 'Equipamentos', 'Técnicas de Pesca'];
-        var resultadoCategorias = '';
+        let categorias = [
+            'Espécies de Peixes',
+            'Equipamentos',
+            'Técnicas de Pesca'
+        ];
 
-        for (var i = 0; i < categorias.length; i++) {
-            var acertos = 0;
-            var total = 0;
+        let resultadoCategorias = '';
 
-            for (var j = 0; j < ultima.respostas.length; j++) {
-                if (ultima.respostas[j].categoria == categorias[i]) {
+        for (let i = 0; i < categorias.length; i++) {
+            let acertos = 0;
+            let total = 0;
+
+            for (let j = 0; j < ultima.respostas.length; j++) {
+                let resposta = ultima.respostas[j];
+
+                if (categoriasPerguntas[resposta.numeroQuestao - 1] == categorias[i]) {
                     total++;
 
-                    if (ultima.respostas[j].acertou) {
+                    if (resposta.acertou) {
                         acertos++;
                     }
                 }
             }
 
-            var porcentagem = Math.round(acertos / total * 100);
+            let porcentagem = 0;
 
-            resultadoCategorias += '<div class="linha-categoria"><strong>' + categorias[i] + '</strong>';
+            if (total > 0) {
+                porcentagem = Math.round(acertos / total * 100);
+            }
+
+            resultadoCategorias += '<div class="linha-categoria"><span>' + categorias[i] + '</span>';
             resultadoCategorias += '<p>' + acertos + ' de ' + total + ' acertos · ' + porcentagem + '%</p>';
             resultadoCategorias += '<div class="trilho"><div class="preenchimento" style="width: ' + porcentagem + '%"></div></div></div>';
         }
 
-        document.getElementById('categorias').innerHTML = resultadoCategorias;
+        document.querySelector('#categorias').innerHTML = resultadoCategorias;
 
-        var erros = [];
-        var acertos = [];
+        let erros = [];
+        let acertos = [];
+        let ordem = [];
 
-        for (var i = 0; i < 10; i++) {
+        for (let i = 0; i < perguntas.length; i++) {
             erros.push(0);
             acertos.push(0);
+            ordem.push(i);
         }
 
-        for (var i = 0; i < historico.length; i++) {
-            for (var j = 0; j < historico[i].respostas.length; j++) {
-                var resposta = historico[i].respostas[j];
-                var numero = resposta.id - 1;
+        for (let i = 0; i < historico.length; i++) {
+            for (let j = 0; j < historico[i].respostas.length; j++) {
+                let resposta = historico[i].respostas[j];
+                let numero = resposta.numeroQuestao - 1;
 
-                if (resposta.acertou) {
-                    acertos[numero]++;
-                } else {
-                    erros[numero]++;
+                if (numero >= 0 && numero < perguntas.length) {
+                    if (resposta.acertou) {
+                        acertos[numero]++;
+                    } else {
+                        erros[numero]++;
+                    }
                 }
             }
         }
 
-        var ordem = [];
-
-        for (var i = 0; i < 10; i++) {
-            ordem.push(i);
-        }
-
-        for (var i = 0; i < ordem.length; i++) {
-            for (var j = i + 1; j < ordem.length; j++) {
+        for (let i = 0; i < ordem.length; i++) {
+            for (let j = i + 1; j < ordem.length; j++) {
                 if (erros[ordem[j]] > erros[ordem[i]]) {
-                    var troca = ordem[i];
+                    let troca = ordem[i];
                     ordem[i] = ordem[j];
                     ordem[j] = troca;
                 }
             }
         }
 
-        var linhas = '';
+        let linhas = '';
 
-        for (var i = 0; i < ordem.length; i++) {
-            var numero = ordem[i];
+        for (let i = 0; i < ordem.length; i++) {
+            let numero = ordem[i];
 
             linhas += '<div class="linha-questao">';
             linhas += '<span>Questão ' + (numero + 1) + ' - ' + perguntas[numero] + '<small>' + categoriasPerguntas[numero] + '</small></span>';
-            linhas += '<strong class="erro">' + erros[numero] + '</strong>';
-            linhas += '<strong>' + acertos[numero] + '</strong></div>';
+            linhas += '<span class="erro">' + erros[numero] + '</span>';
+            linhas += '<span>' + acertos[numero] + '</span></div>';
         }
 
-        document.getElementById('questoesDificeis').innerHTML = linhas;
+        questoesDificeis.innerHTML = linhas;
     }
 </script>
