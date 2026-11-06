@@ -238,28 +238,14 @@ body {
     font-size: 28px;
 }
 
-.linha-grafico {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 20px 0;
-}
 
-.linha-grafico span:first-child {
-    width: 90px;
-    font-size: 13px;
-}
+/* GRÁFICOS DA DASHBOARD COM CHART.JS */
 
-.linha-grafico .trilho {
-    flex: 1;
-}
-
-.linha-categoria {
-    margin: 25px 0;
-}
-
-.linha-categoria p {
-    margin: 5px 0 10px;
+.area-grafico {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    margin-top: 25px;
 }
 
 
@@ -350,6 +336,7 @@ body {
     padding: 20px 0;
 }
 
+
 /* CORES DAS FONTES - QUIZ E DASHBOARD */
 
 .pagina h1, .pagina h2, .pagina h3 {
@@ -379,6 +366,7 @@ body {
 .linha-questao small {
     color: #6D736E;
 }
+
 
 /* QUESTÃO ÚNICA DO QUIZ */
 

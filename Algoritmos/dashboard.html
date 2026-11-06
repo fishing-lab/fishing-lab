@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -8,6 +7,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/quiz-dash.css">
     <link rel="icon" href="./img/icon.svg">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Dashboard - Fishing Lab</title>
 </head>
 <body>
@@ -75,14 +75,18 @@
                     <h4>EVOLUÇÃO</h4>
                     <h2>Como você está evoluindo?</h2>
                     <p>Compare o aproveitamento das suas tentativas.</p>
-                    <div id="graficoEvolucao"></div>
+                    <div class="area-grafico">
+                        <canvas id="graficoEvolucao"></canvas>
+                    </div>
                 </div>
 
                 <div class="painel">
                     <h4>ÚLTIMA TENTATIVA</h4>
                     <h2>Desempenho por categoria</h2>
                     <p>Percentual de acertos em cada assunto.</p>
-                    <div id="categorias"></div>
+                    <div class="area-grafico">
+                        <canvas id="graficoCategorias"></canvas>
+                    </div>
                 </div>
             </div>
 
@@ -137,6 +141,7 @@
     </footer>
 </body>
 </html>
+
 <script>
     let perguntas = [
         "Qual é uma das principais características do tucunaré?",
@@ -164,6 +169,9 @@
         'Técnicas de Pesca'
     ];
 
+    let graficoLinha = null;
+    let graficoBarras = null;
+
     function montarDashboard(historico) {
         if (historico.length == 0) {
             semDados.innerHTML = '<h2>Nenhuma tentativa encontrada.</h2><p>Responda ao Quiz para começar seu histórico.</p><a class="botao-verde" href="quiz.html">Ir para o Quiz →</a>';
@@ -187,20 +195,61 @@
         kpiTentativas.innerHTML = historico.length;
         kpiMelhor.innerHTML = melhor + '/10';
 
-        let grafico = '';
+        let nomesTentativas = [];
+        let percentuais = [];
         let tentativas = '';
 
         for (let i = 0; i < historico.length; i++) {
-            let tentativa = historico[i];
-            let valor = tentativa.acertos * 10;
-
-            grafico += '<div class="linha-grafico">';
-            grafico += '<span>Tentativa ' + (i + 1) + '</span>';
-            grafico += '<div class="trilho"><div class="preenchimento" style="width: ' + valor + '%"></div></div>';
-            grafico += '<span>' + valor + '%</span></div>';
+            nomesTentativas.push('Tentativa ' + (i + 1));
+            percentuais.push(historico[i].acertos * 10);
         }
 
-        graficoEvolucao.innerHTML = grafico;
+        if (graficoLinha != null) {
+            graficoLinha.destroy();
+        }
+
+        graficoLinha = new Chart(graficoEvolucao, {
+            type: 'line',
+            data: {
+                labels: nomesTentativas,
+                datasets: [{
+                    label: 'Aproveitamento',
+                    data: percentuais,
+                    borderColor: '#173D32',
+                    backgroundColor: '#49745A',
+                    borderWidth: 3,
+                    pointRadius: 5,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(contexto) {
+                                return contexto.parsed.y + '% de acertos';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        min: 0,
+                        max: 100,
+                        ticks: {
+                            callback: function(valor) {
+                                return valor + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
 
         for (let i = historico.length - 1; i >= 0; i--) {
             let tentativa = historico[i];
@@ -220,7 +269,8 @@
             'Técnicas de Pesca'
         ];
 
-        let resultadoCategorias = '';
+        let nomesCategorias = ['Espécies', 'Equipamentos', 'Técnicas'];
+        let percentuaisCategorias = [];
 
         for (let i = 0; i < categorias.length; i++) {
             let acertos = 0;
@@ -244,12 +294,52 @@
                 porcentagem = Math.round(acertos / total * 100);
             }
 
-            resultadoCategorias += '<div class="linha-categoria"><span>' + categorias[i] + '</span>';
-            resultadoCategorias += '<p>' + acertos + ' de ' + total + ' acertos · ' + porcentagem + '%</p>';
-            resultadoCategorias += '<div class="trilho"><div class="preenchimento" style="width: ' + porcentagem + '%"></div></div></div>';
+            percentuaisCategorias.push(porcentagem);
         }
 
-        document.querySelector('#categorias').innerHTML = resultadoCategorias;
+        if (graficoBarras != null) {
+            graficoBarras.destroy();
+        }
+
+        graficoBarras = new Chart(graficoCategorias, {
+            type: 'bar',
+            data: {
+                labels: nomesCategorias,
+                datasets: [{
+                    label: 'Acertos por categoria',
+                    data: percentuaisCategorias,
+                    backgroundColor: ['#173D32', '#49745A', '#92A895'],
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(contexto) {
+                                return contexto.parsed.y + '% de acertos';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        min: 0,
+                        max: 100,
+                        ticks: {
+                            callback: function(valor) {
+                                return valor + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
 
         let erros = [];
         let acertos = [];
