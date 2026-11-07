@@ -1,4 +1,5 @@
-ç<!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -139,9 +140,6 @@
             <p>Copyright © 2026 - Edição Pesqueiros - Portal Educativo</p>
         </div>
     </footer>
-</body>
-</html>
-
 <script>
     let perguntas = [
         "Qual é uma das principais características do tucunaré?",
@@ -389,4 +387,60 @@
 
         questoesDificeis.innerHTML = linhas;
     }
+
+    // Gabarito do quiz
+    let gabarito = ['B', 'C', 'C', 'D', 'B', 'C', 'D', 'A', 'B', 'C'];
+
+    // Busca as tentativas do usuário no MySQL
+    function carregarHistorico() {
+        let idUsuario = sessionStorage.getItem("ID_USUARIO");
+
+        if (idUsuario == null) {
+            return;
+        }
+
+        semDados.innerHTML = '<h2>Carregando seu histórico...</h2>';
+
+        fetch("/quiz/historico/" + idUsuario)
+            .then(function(resposta) {
+                if (!resposta.ok) {
+                    throw new Error("Não foi possível buscar o histórico.");
+                }
+
+                return resposta.json();
+            })
+            .then(function(dados) {
+                let historico = [];
+
+                for (let i = 0; i < dados.length; i++) {
+                    let respostas = [];
+
+                    for (let j = 1; j <= 10; j++) {
+                        let alternativaEscolhida = dados[i]["questao" + j];
+
+                        respostas.push({
+                            numeroQuestao: j,
+                            acertou: alternativaEscolhida == gabarito[j - 1]
+                        });
+                    }
+
+                    historico.push({
+                        acertos: dados[i].acertos,
+                        dataHora: dados[i].dataHora,
+                        respostas: respostas
+                    });
+                }
+
+                montarDashboard(historico);
+            })
+            .catch(function(erro) {
+                console.log("Erro ao carregar dashboard:", erro);
+
+                semDados.innerHTML = '<h2>Não foi possível carregar seu histórico.</h2><p>Tente atualizar a página.</p>';
+            });
+    }
+
+    carregarHistorico();
 </script>
+</body>
+</html>

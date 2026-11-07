@@ -51,6 +51,28 @@ function submeter(req, res) {
     }
 }
 
+// Busca o histórico de tentativas de um usuário
+function buscarHistorico(req, res) {
+
+    var fkUsuario = Number(req.params.idUsuario);
+    console.log("Buscando histórico do usuário:", fkUsuario);
+
+    if (!Number.isInteger(fkUsuario) || fkUsuario <= 0) {
+        res.status(400).send("ID do usuário inválido!");
+    } else {
+
+        quizModel.buscarHistorico(fkUsuario)
+            .then(function(resultado) {
+                res.json(resultado);
+            })
+            .catch(function(erro) {
+                console.log("Erro ao buscar histórico:", erro);
+                res.status(500).send("Erro ao buscar histórico do quiz.");
+            });
+    }
+}
+
 module.exports = {
-    submeter
+    submeter,
+    buscarHistorico
 };
