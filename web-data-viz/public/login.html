@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -92,7 +91,6 @@
 
 </body>
 </html>
-
 <script>
     function entrar() {
         let email = input_email.value;
@@ -101,10 +99,7 @@
         if (email == "" || senha == "") {
             mensagem.innerHTML = "Preencha o e-mail e a senha.";
         } else {
-            
-            console.log("FORM LOGIN: ", email);
-            console.log("FORM SENHA: ", senha);
-    
+
             fetch("/usuarios/autenticar", {
                 method: "POST",
                 headers: {
@@ -114,41 +109,35 @@
                     emailServer: email,
                     senhaServer: senha
                 })
-            }).then(function (resposta) {
-                console.log("ESTOU NO THEN DO entrar()!")
-    
+            })
+            .then(function(resposta) {
+
                 if (resposta.ok) {
-                    console.log(resposta);
-    
-                    resposta.json().then(json => {
-                        console.log(json);
-                        console.log(JSON.stringify(json));
+
+                    resposta.json().then(function(json) {
+
                         sessionStorage.EMAIL_USUARIO = json.email;
                         sessionStorage.NOME_USUARIO = json.nome;
-                        sessionStorage.ID_USUARIO = json.id;
-    
-                        setTimeout(function () {
-                            window.location = "./dashboard.html";
-                        }, 500); // apenas para exibir o loading
-    
-                    });
-    
-                } else {
-    
-                    mensagem.innerHTML = `<span style="color: red">Email ou senha incorretos!</span>`;
-    
-                    resposta.text().then(texto => {
-                        console.error(texto);
-                        finalizarAguardar(texto);
-                    });
-                }
-    
-            }).catch(function (erro) {
-                console.log(erro);
-            })
-    
-            return false;
-        }
-        }
+                        sessionStorage.ID_USUARIO = json.idUsuario;
 
+                        mensagem.innerHTML = "Login realizado com sucesso!";
+
+                        setTimeout(function() {
+                            window.location = "./dashboard.html";
+                        }, 500);
+
+                    });
+
+                } else {
+                    mensagem.innerHTML = "E-mail ou senha incorretos!";
+                }
+
+            })
+            .catch(function(erro) {
+                console.log("Erro ao realizar login:", erro);
+                mensagem.innerHTML = "Erro ao conectar com o servidor.";
+            });
+
+        }
+    }
 </script>

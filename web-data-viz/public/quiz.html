@@ -139,8 +139,7 @@
             <p>Copyright © 2026 - Edição Pesqueiros - Portal Educativo</p>
         </div>
     </footer>
-</body>
-</html>
+
 <script>
     let listaDeQuestoes = [
         {
@@ -324,7 +323,7 @@
         if (acertou) {
             certas++;
             spanCertas.innerHTML = certas;
-            aviso.innerHTML = '<span style="color: Green">Resposta correta! <span>';
+            aviso.innerHTML = '<span style="color: Green">Resposta correta!</span>';
         } else {
             erradas++;
             spanErradas.innerHTML = erradas;
@@ -375,6 +374,8 @@
     function finalizarJogo() {
         let porcentagem = Math.round(certas / quantidadeDeQuestoes * 100);
 
+        salvarTentativa();
+
         nota.innerHTML = certas + '/' + quantidadeDeQuestoes;
         percentual.innerHTML = porcentagem + '%';
         barraNota.style.width = porcentagem + '%';
@@ -393,7 +394,57 @@
         window.scrollTo(0, 0);
     }
 
+    function salvarTentativa() {
+        let fkUsuario = sessionStorage.getItem("ID_USUARIO");
+
+        console.log("ID do usuário enviado:", fkUsuario);
+
+        if (fkUsuario == null) {
+            alert("Você precisa estar logado para salvar seu resultado.");
+            return;
+        }
+
+        if (respostasDaTentativa.length != quantidadeDeQuestoes) {
+            alert("O quiz ainda não foi concluído.");
+            return;
+        }
+
+        fetch("/quiz/submeter", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkUsuarioServer: fkUsuario,
+                acertosServer: certas,
+                questao1Server: respostasDaTentativa[0].alternativaEscolhida.replace("alternativa", ""),
+                questao2Server: respostasDaTentativa[1].alternativaEscolhida.replace("alternativa", ""),
+                questao3Server: respostasDaTentativa[2].alternativaEscolhida.replace("alternativa", ""),
+                questao4Server: respostasDaTentativa[3].alternativaEscolhida.replace("alternativa", ""),
+                questao5Server: respostasDaTentativa[4].alternativaEscolhida.replace("alternativa", ""),
+                questao6Server: respostasDaTentativa[5].alternativaEscolhida.replace("alternativa", ""),
+                questao7Server: respostasDaTentativa[6].alternativaEscolhida.replace("alternativa", ""),
+                questao8Server: respostasDaTentativa[7].alternativaEscolhida.replace("alternativa", ""),
+                questao9Server: respostasDaTentativa[8].alternativaEscolhida.replace("alternativa", ""),
+                questao10Server: respostasDaTentativa[9].alternativaEscolhida.replace("alternativa", "")
+            })
+        })
+        .then(function(resposta) {
+            if (resposta.ok) {
+                console.log("Tentativa salva com sucesso!");
+            } else {
+                throw "Erro ao salvar a tentativa.";
+            }
+        })
+        .catch(function(erro) {
+            console.log("Erro:", erro);
+            alert("Não foi possível salvar seu resultado.");
+        });
+    }
+
     function tentarNovamente() {
         window.location.reload();
     }
 </script>
+</body>
+</html>
