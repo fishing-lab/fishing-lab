@@ -34,7 +34,7 @@
     <main class="pagina">
         <div class="vazio" id="semDados">
             <h4>ÁREA DO USUÁRIO</h4>
-            <h2>Minha Dashboard</h2>
+            <h2>Fishing Dashboard</h2>
             <a class="botao-verde" href="login.html">Ir para Login →</a>
         </div>
 
@@ -89,20 +89,6 @@
                         <canvas id="graficoCategorias"></canvas>
                     </div>
                 </div>
-            </div>
-
-            <div class="painel">
-                <h4>ONDE REVISAR</h4>
-                <h2>Questões com mais dificuldade</h2>
-                <p>Questões organizadas pela quantidade de erros nas suas tentativas.</p>
-
-                <div class="cabecalho-linha cabecalho-questoes">
-                    <span>QUESTÃO</span>
-                    <span>ERROS</span>
-                    <span>ACERTOS</span>
-                </div>
-
-                <div id="questoesDificeis"></div>
             </div>
 
             <div class="painel">
@@ -441,6 +427,35 @@
     }
 
     carregarHistorico();
+
+
+// DADOS TEMPORÁRIOS PARA EDITAR A DASHBOARD
+
+// let historicoTeste = [];
+
+// for (let i = 0; i < 2; i++) {
+//     let respostas = [];
+//     let quantidadeAcertos = 4;
+
+//     if (i == 1) {
+//         quantidadeAcertos = 8;
+//     }
+
+//     for (let j = 1; j <= 10; j++) {
+//         respostas.push({
+//             numeroQuestao: j,
+//             acertou: j <= quantidadeAcertos
+//         });
+//     }
+
+//     historicoTeste.push({
+//         acertos: quantidadeAcertos,
+//         dataHora: "2026-11-06T20:00:00",
+//         respostas: respostas
+//     });
+// }
+
+// montarDashboard(historicoTeste);
 </script>
 </body>
 </html>
