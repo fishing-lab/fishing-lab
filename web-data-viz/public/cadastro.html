@@ -119,7 +119,6 @@
             mensagem.innerHTML = "As senhas precisam ser iguais.";
         } else {
             
-            // Enviando o valor da nova input
             fetch("/usuarios/cadastrar", {
             method: "POST",
             headers: {

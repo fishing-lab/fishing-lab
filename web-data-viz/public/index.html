@@ -38,7 +38,7 @@
             <div class="inicio-esquerda">
                 <h6>UM PORTAL PARA APRENDER A PESCAR MELHOR</h6>
                 <h1>Onde a paixão pela pesca encontra o conhecimento.</h1>
-                <p>No Fishing Lab, a curiosidade encontra o lago. Descubra os peixes, prepare seu equipamento e aprenda a pescar em pesqueiros com mais consciência.</p>
+                <p>No Fishing Lab, a curiosidade encontra o lago. Descubra os peixes que pesquei, prepare seu equipamento e aprenda a pescar em pesqueiros com mais consciência.</p>
 
                 <div class="inicio-detalhe">
                     <img src="./img/folha.png" alt="Folha">
@@ -102,7 +102,7 @@
         
         <div class="historia">
             <div class="historia-esquerda">
-                <img src="./img/ilhabela.jpg" alt="Pesca em Ilhabela no Deck">
+                <img id="img_carrossel" src="img1.png" width="500">
             </div>
             
             <div class="historia-direita">
@@ -166,3 +166,20 @@
     </footer>
 </body>
 </html>
+<script>
+    let imagens = ["./img/tamba2.jpg", "./img/ilhabela.jpg"]
+    let posicao = 0
+
+    function proxima() {
+
+        posicao++
+
+        if (posicao == imagens.length) {
+            posicao = 0
+        }
+
+        img_carrossel.src = imagens[posicao]
+    }
+
+    setInterval(proxima, 3000)
+</script>
