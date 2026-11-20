@@ -39,5 +39,3 @@ CREATE TABLE resposta (
 SELECT * FROM usuario;
 SELECT * FROM tentativa;
 SELECT * FROM resposta;
-
-truncate usuario;
