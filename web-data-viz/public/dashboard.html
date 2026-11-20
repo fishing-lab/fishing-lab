@@ -424,36 +424,8 @@
             });
     }
 
-    // carregarHistorico();
+    carregarHistorico();
 
-
-// DADOS TEMPORÁRIOS PARA EDITAR A DASHBOARD
-
-let historicoTeste = [];
-
-for (let i = 0; i < 2; i++) {
-    let respostas = [];
-    let quantidadeAcertos = 4;
-
-    if (i == 1) {
-        quantidadeAcertos = 8;
-    }
-
-    for (let j = 1; j <= 10; j++) {
-        respostas.push({
-            numeroQuestao: j,
-            acertou: j <= quantidadeAcertos
-        });
-    }
-
-    historicoTeste.push({
-        acertos: quantidadeAcertos,
-        dataHora: "2026-11-06T20:00:00",
-        respostas: respostas
-    });
-}
-
-montarDashboard(historicoTeste);
 </script>
 </body>
 </html>
