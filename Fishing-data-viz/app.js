@@ -21,6 +21,9 @@ var quizRouter = require("./src/routes/quiz");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Disponibiliza os arquivos HTML, CSS e JavaScript da pasta public.
+// O usuario.js permanece em public/usuario.js, como no projeto enviado.
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());

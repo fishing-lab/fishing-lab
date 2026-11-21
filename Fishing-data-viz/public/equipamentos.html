@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -30,12 +29,52 @@
                     <a class="btn-cadastro" href="cadastro.html">Criar Conta</a>
                 </div>
                 <div id="navUsuario" style="display: none; gap: 15px; align-items: center;">
-                    <span class="btn-entrar" id="nomeNavbar"></span>
+                    <button type="button" class="btn-entrar" id="nomeNavbar" onclick="abrirPerfil()"></button>
                     <a class="btn-cadastro" href="index.html" onclick="sair()">Sair</a>
                 </div>
             </div>
         </nav>
     </header>
+    <!-- Janela de perfil: abre ao clicar no nome na navbar -->
+    <div class="janela-perfil" id="janelaPerfil" style="display: none;">
+        <div class="caixa-perfil">
+            <div class="perfil-topo">
+                <h2>Meu perfil</h2>
+                <button type="button" class="perfil-fechar" onclick="fecharPerfil()">×</button>
+            </div>
+
+            <div id="formularioPerfil">
+                <label for="input_nome_perfil">Nome</label>
+                <input type="text" id="input_nome_perfil">
+
+                <label for="input_email_perfil">E-mail</label>
+                <input type="email" id="input_email_perfil">
+
+                <label for="input_senha_perfil">Senha atual</label>
+                <input type="password" id="input_senha_perfil" placeholder="Confirme sua senha">
+
+                <p id="mensagemPerfil" class="perfil-mensagem"></p>
+                <button type="button" class="perfil-salvar" onclick="salvarPerfil()">Salvar alterações</button>
+                <hr>
+                <button type="button" class="perfil-excluir" onclick="mostrarConfirmacao()">Excluir minha conta</button>
+            </div>
+
+            <div id="confirmarExclusao" style="display: none;">
+                <h3>Excluir minha conta</h3>
+                <p class="perfil-aviso">Seu cadastro, suas tentativas e suas respostas serão excluídos permanentemente.</p>
+
+                <label for="input_senha_exclusao">Digite sua senha para confirmar</label>
+                <input type="password" id="input_senha_exclusao">
+                <p id="mensagemExclusao" class="perfil-mensagem"></p>
+
+                <div class="perfil-acoes">
+                    <button type="button" class="perfil-cancelar" onclick="cancelarExclusao()">Cancelar</button>
+                    <button type="button" class="perfil-excluir" onclick="excluirPerfil()">Confirmar exclusão</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <main>
         <div class="head-equipamentos">
@@ -43,7 +82,7 @@
                 <div>
                     <h3>GUIA 02 · EDIÇÃO PESQUEIROS</h3>
                     <h1>Equipamentos</h1>
-                    <p>Um bom conjunto não é o mais complicado. É aquele que combina com o peixe, o ambiente, sua experiência e as regras do pesqueiro.</p>
+                    <p>Não precisa ter muitos equipamentos para começar. O importante é escolher os que combinam com a sua pescaria.</p>
                 </div>
             </div>
 
@@ -51,15 +90,15 @@
                 <img src="./img/card2.jpg" alt="Equipamentos de pesca">
                 <div>
                     <h4>ESCOLHER É EQUILIBRAR</h4>
-                    <h2>Pense no conjunto, não só na peça.</h2>
-                    <p>Vara, linha, anzol e freio trabalham juntos. Antes de comprar ou montar, conte à equipe qual peixe pretende buscar e peça uma orientação para aquele lago.</p>
+                    <h2>O equipamento precisa combinar.</h2>
+                    <p>Vara, linha e anzol precisam funcionar bem juntos. Se tiver dúvida, peça ajuda à equipe do pesqueiro.</p>
                 </div>
             </div>
         </div>
 
         <div class="guia-equipamentos">
             <div class="titulo-lista-equipamentos">
-                <h2>O que levar — e por quê</h2>
+                <h2>Conheça os principais equipamentos</h2>
             </div>
 
             <div class="cards-equipamentos">
@@ -68,15 +107,15 @@
                         <span>01</span>
                         <div>
                             <h3>Varas</h3>
-                            <p>A base do conjunto</p>
+                            <p>Para começar a pescar</p>
                         </div>
                     </div>
                     <h4>Para que serve</h4>
-                    <p>A vara ajuda no arremesso, transmite os sinais da fisgada e amortece os movimentos do peixe. Não precisa ser a mais rígida para ser a mais adequada.</p>
+                    <p>A vara ajuda a lançar a isca e controlar o peixe durante a pesca.</p>
                     <h4>Como escolher</h4>
-                    <p>Considere o peixe esperado, o espaço na margem e a faixa de linha e de arremesso indicada pelo fabricante. O conjunto precisa trabalhar em equilíbrio.</p>
+                    <p>Escolha de acordo com o peixe que pretende pescar e com o tipo de linha que vai usar.</p>
                     <h4>Na beira do lago</h4>
-                    <p>Confira passadores e encaixes. Para peixes grandes, peça indicação de material reforçado; uma vara leve não se torna segura apenas com uma linha mais forte.</p>
+                    <p>Antes de começar, confira se a vara está em boas condições. Para peixes grandes, use material adequado.</p>
                 </div>
 
                 <div class="card-equipamento" id="molinetes">
@@ -84,15 +123,15 @@
                         <span>02</span>
                         <div>
                             <h3>Molinetes</h3>
-                            <p>Um começo acessível</p>
+                            <p>Práticos para iniciantes</p>
                         </div>
                     </div>
                     <h4>Para que serve</h4>
-                    <p>O carretel fica fixo durante o lançamento e a linha sai pela frente. É uma opção prática para aprender arremessos e trabalhar diferentes iscas em pesqueiros.</p>
+                    <p>O molinete ajuda a lançar e recolher a linha. É uma opção prática para quem está começando.</p>
                     <h4>Como escolher</h4>
-                    <p>Procure tamanho compatível com a vara, capacidade de linha suficiente e freio de ajuste progressivo. Conforto e equilíbrio importam mais do que o número de rolamentos.</p>
+                    <p>Escolha um tamanho que combine com a vara e tenha espaço suficiente para a linha.</p>
                     <h4>Na beira do lago</h4>
-                    <p>Feche o arco com cuidado e confira a linha no rolete. Regule o freio com orientação: travá-lo por completo pode romper a linha ou sobrecarregar a vara.</p>
+                    <p>Confira a linha e ajuste o freio. Se ele estiver apertado demais, a linha pode arrebentar.</p>
                 </div>
 
                 <div class="card-equipamento" id="carretilhas">
@@ -100,15 +139,15 @@
                         <span>03</span>
                         <div>
                             <h3>Carretilhas</h3>
-                            <p>Controle com prática</p>
+                            <p>Exigem um pouco de treino</p>
                         </div>
                     </div>
                     <h4>Para que serve</h4>
-                    <p>Na carretilha, o carretel gira durante o arremesso. Ela pode oferecer bom controle da linha, mas exige um pouco mais de treino.</p>
+                    <p>A carretilha também serve para lançar e recolher a linha, mas exige mais prática no arremesso.</p>
                     <h4>Como escolher</h4>
-                    <p>Escolha um modelo compatível com a vara e com o tipo de pescaria. Para começar, vale aprender a ajustar o freio e a saída de linha.</p>
+                    <p>Veja se combina com sua vara e aprenda a regular o freio antes de usar.</p>
                     <h4>Na beira do lago</h4>
-                    <p>Faça arremessos curtos no início e evite colocar força demais. Um ajuste inadequado pode causar embolamento da linha.</p>
+                    <p>Comece com arremessos curtos para evitar que a linha embarace.</p>
                 </div>
 
                 <div class="card-equipamento" id="linhas">
@@ -116,15 +155,15 @@
                         <span>04</span>
                         <div>
                             <h3>Linhas</h3>
-                            <p>A ligação com o peixe</p>
+                            <p>Um item essencial</p>
                         </div>
                     </div>
                     <h4>Para que serve</h4>
-                    <p>A linha conecta a montagem ao equipamento e ajuda a transmitir os movimentos do peixe. Existem tipos e resistências diferentes.</p>
+                    <p>A linha liga o anzol ao equipamento e precisa aguentar a força do peixe.</p>
                     <h4>Como escolher</h4>
-                    <p>Observe a resistência indicada, o tipo de peixe e a recomendação do fabricante para a vara e o molinete.</p>
+                    <p>Escolha a resistência conforme o peixe e o equipamento utilizado.</p>
                     <h4>Na beira do lago</h4>
-                    <p>Passe os dedos com cuidado pela linha para verificar desgastes. Confira os nós antes de começar a pescar.</p>
+                    <p>Confira se a linha está desgastada e se os nós estão bem feitos.</p>
                 </div>
 
                 <div class="card-equipamento" id="anzois">
@@ -132,15 +171,15 @@
                         <span>05</span>
                         <div>
                             <h3>Anzóis</h3>
-                            <p>Pequenos, mas importantes</p>
+                            <p>Cada tamanho tem sua função</p>
                         </div>
                     </div>
                     <h4>Para que serve</h4>
-                    <p>O anzol segura a isca e participa da fisgada. Seu formato e tamanho devem combinar com a isca e com o peixe procurado.</p>
+                    <p>O anzol segura a isca e ajuda na fisgada. Existem vários tamanhos e formatos.</p>
                     <h4>Como escolher</h4>
-                    <p>Considere o tamanho da boca do peixe e as regras do pesqueiro. Prefira orientações que facilitem a retirada e a soltura.</p>
+                    <p>Escolha conforme a espécie e as regras do pesqueiro.</p>
                     <h4>Na beira do lago</h4>
-                    <p>Tenha um alicate por perto e proteja as pontas ao transportar. Nunca deixe anzóis soltos na margem.</p>
+                    <p>Guarde os anzóis com cuidado e tenha um alicate por perto para ajudar na retirada.</p>
                 </div>
 
                 <div class="card-equipamento" id="acessorios">
@@ -148,48 +187,48 @@
                         <span>06</span>
                         <div>
                             <h3>Acessórios</h3>
-                            <p>Organização e cuidado</p>
+                            <p>Itens que ajudam bastante</p>
                         </div>
                     </div>
                     <h4>Para que serve</h4>
-                    <p>Boias, chumbadas, passaguá e alicate auxiliam na montagem e no manuseio. Nem tudo será necessário em toda pescaria.</p>
+                    <p>Boias, chumbadas, alicate e passaguá ajudam em diferentes momentos da pesca.</p>
                     <h4>Como escolher</h4>
-                    <p>Leve apenas o que fizer sentido para a técnica escolhida e para as regras do local.</p>
+                    <p>Leve o que realmente vai usar, de acordo com a pescaria.</p>
                     <h4>Na beira do lago</h4>
-                    <p>Organize a caixa de pesca, confira os acessórios e mantenha um passaguá adequado disponível quando necessário.</p>
+                    <p>Deixe tudo organizado e fácil de encontrar quando precisar.</p>
                 </div>
             </div>
 
             <div class="aviso-equipamentos">
                 <i class="fa-solid fa-leaf"></i>
                 <div>
-                    <h3>Peixe grande não combina com improviso.</h3>
-                    <p>Pirarara e pirarucu exigem material reforçado, espaço e estrutura de manejo. Confirme se a pesca está autorizada, ajuste o conjunto com a equipe e combine o apoio para a retirada do anzol e a soltura antes de iniciar.</p>
+                    <h3>Peixes grandes pedem mais cuidado.</h3>
+                    <p>Para pescar pirarara ou pirarucu, use equipamentos adequados e peça orientação à equipe do pesqueiro.</p>
                 </div>
             </div>
 
             <div class="checagem-equipamentos">
-                <h2>Uma checagem simples evita problemas.</h2>
+                <h2>Antes de começar, confira:</h2>
                 <div class="itens-checagem">
                     <div>
                         <i class="fa-regular fa-circle-check"></i>
                         <h3>Leia as regras</h3>
-                        <p>Confira iscas, anzóis, áreas permitidas e normas de captura e soltura.</p>
+                        <p>Veja quais iscas e áreas são permitidas.</p>
                     </div>
                     <div>
                         <i class="fa-regular fa-circle-check"></i>
                         <h3>Revise o conjunto</h3>
-                        <p>Observe linha, nós, passadores e o funcionamento do freio.</p>
+                        <p>Confira a linha, os nós e o freio.</p>
                     </div>
                     <div>
                         <i class="fa-regular fa-circle-check"></i>
                         <h3>Prepare o manejo</h3>
-                        <p>Deixe passaguá e alicate ao alcance. Saiba a quem pedir ajuda.</p>
+                        <p>Deixe o alicate e o passaguá por perto.</p>
                     </div>
                     <div>
                         <i class="fa-regular fa-circle-check"></i>
                         <h3>Cuide da margem</h3>
-                        <p>Organize as pontas, recolha resíduos e mantenha distância de outras pessoas.</p>
+                        <p>Recolha o lixo e respeite o espaço dos outros pescadores.</p>
                     </div>
                 </div>
             </div>
@@ -209,23 +248,6 @@
             <p>Copyright © 2026 - Edição Pesqueiros - Portal Educativo</p>
         </div>
     </footer>
-<script>
-    function atualizarNavbar() {
-        let idUsuario = sessionStorage.getItem("ID_USUARIO");
-        let nomeUsuario = sessionStorage.getItem("NOME_USUARIO");
-
-        if (idUsuario != null && nomeUsuario != null) {
-            navVisitante.style.display = "none";
-            navUsuario.style.display = "flex";
-            nomeNavbar.innerText = "Olá, " + nomeUsuario + "!";
-        }
-    }
-
-    function sair() {
-        sessionStorage.clear();
-    }
-
-    atualizarNavbar();
-</script>
+<script src="/usuario.js"></script>
 </body>
 </html>

@@ -1,5 +1,3 @@
-/* INDEX */
-
 body {
     margin: 0;
     font-family: 'DM Sans', sans-serif;
@@ -383,6 +381,215 @@ h1, h2, h3{
     margin: 5px 0;
 }
 
+.historia {
+    align-items: flex-start;
+}
+
+.historia-fotos {
+    position: relative;
+}
+
+.historia-fotos img {
+    height: 480px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.historia-controles {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 1px 4px #173D32;
+}
+
+.historia-controles button {
+    border: 0;
+    background-color: #173D32;
+    color: white;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.historia-controles button:hover {
+    background-color: #37664B;
+}
+
+.historia-legenda {
+    color: #6d736e;
+    font-size: 14px;
+    text-align: center;
+    margin: 12px 0 0;
+}
+
+.historia-direita .historia-intro {
+    margin-bottom: 25px;
+}
+
+.historia-linha-tempo {
+    border-left: 2px solid #B7C9B8;
+    margin-left: 17px;
+    padding-left: 25px;
+}
+
+.historia-momento {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.historia-momento span {
+    background-color: #173D32;
+    color: white;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    margin-left: -44px;
+}
+
+.historia-momento h3,
+.historia-projeto h3 {
+    font-family: 'DM Sans', sans-serif;
+    color: #173D32;
+    font-size: 17px;
+    margin: 4px 0 7px;
+}
+
+.historia-momento p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.historia-projeto {
+    background-color: #FAF9F5;
+    border: 1px solid #D9DED7;
+    border-radius: 15px;
+    padding: 18px 22px;
+    margin-top: 25px;
+}
+
+.historia-projeto p {
+    font-size: 14px;
+    margin: 0;
+}
+
+.janela-perfil {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.caixa-perfil {
+    background-color: #FAF9F5;
+    border-radius: 15px;
+    padding: 30px;
+    width: 90%;
+    max-width: 420px;
+    box-sizing: border-box;
+    max-height: 90vh;
+    overflow-y: auto;
+    color: #173D32;
+}
+
+.caixa-perfil h2 {
+    margin: 0 0 20px;
+    font-size: 28px;
+}
+
+.caixa-perfil label {
+    display: block;
+    margin: 12px 0 5px;
+    font-weight: 600;
+}
+
+.caixa-perfil input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #CBD4C9;
+    border-radius: 8px;
+    font: inherit;
+}
+
+.caixa-perfil button {
+    cursor: pointer;
+    font: inherit;
+}
+
+.perfil-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.perfil-fechar {
+    border: 0;
+    background: none;
+    font-size: 24px;
+    color: #173D32;
+}
+
+.perfil-salvar, .perfil-cancelar {
+    border: 0;
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin-top: 18px;
+    background-color: #173D32;
+    color: white;
+}
+
+.perfil-excluir {
+    background: none;
+    color: #A52A2A;
+    border: 1px solid #A52A2A;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+.perfil-mensagem {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.perfil-aviso {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.perfil-acoes {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#nomeNavbar {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    font: inherit;
+}
+
+
 /* INDEX */
 
 /* ESPÉCIES */
@@ -475,7 +682,7 @@ body:has(.head) .nav-bar {
 
 .foto-peixe img {
     width: 100%;
-    height: 480px;
+    height: 400px;
     object-fit: cover;
     border-radius: 15px;
 }
@@ -553,3 +760,4 @@ html:has(.head) {
     scroll-behavior: smooth;
 }
 /* ESPÉCIES */
+

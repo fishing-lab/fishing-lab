@@ -1,4 +1,3 @@
-
 var database = require("../database/config");
 
 function iniciarQuiz(fkUsuario, acertos) {

@@ -28,12 +28,52 @@
                     <a class="btn-cadastro" href="cadastro.html">Criar Conta</a>
                 </div>
                 <div id="navUsuario" style="display: none; gap: 15px; align-items: center;">
-                    <span class="btn-entrar" id="nomeNavbar"></span>
+                    <button type="button" class="btn-entrar" id="nomeNavbar" onclick="abrirPerfil()"></button>
                     <a class="btn-cadastro" href="index.html" onclick="sair()">Sair</a>
                 </div>
             </div>
         </nav>
     </header>
+    <!-- Janela de perfil: abre ao clicar no nome na navbar -->
+    <div class="janela-perfil" id="janelaPerfil" style="display: none;">
+        <div class="caixa-perfil">
+            <div class="perfil-topo">
+                <h2>Meu perfil</h2>
+                <button type="button" class="perfil-fechar" onclick="fecharPerfil()">×</button>
+            </div>
+
+            <div id="formularioPerfil">
+                <label for="input_nome_perfil">Nome</label>
+                <input type="text" id="input_nome_perfil">
+
+                <label for="input_email_perfil">E-mail</label>
+                <input type="email" id="input_email_perfil">
+
+                <label for="input_senha_perfil">Senha atual</label>
+                <input type="password" id="input_senha_perfil" placeholder="Confirme sua senha">
+
+                <p id="mensagemPerfil" class="perfil-mensagem"></p>
+                <button type="button" class="perfil-salvar" onclick="salvarPerfil()">Salvar alterações</button>
+                <hr>
+                <button type="button" class="perfil-excluir" onclick="mostrarConfirmacao()">Excluir minha conta</button>
+            </div>
+
+            <div id="confirmarExclusao" style="display: none;">
+                <h3>Excluir minha conta</h3>
+                <p class="perfil-aviso">Seu cadastro, suas tentativas e suas respostas serão excluídos permanentemente.</p>
+
+                <label for="input_senha_exclusao">Digite sua senha para confirmar</label>
+                <input type="password" id="input_senha_exclusao">
+                <p id="mensagemExclusao" class="perfil-mensagem"></p>
+
+                <div class="perfil-acoes">
+                    <button type="button" class="perfil-cancelar" onclick="cancelarExclusao()">Cancelar</button>
+                    <button type="button" class="perfil-excluir" onclick="excluirPerfil()">Confirmar exclusão</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <main class="pagina">
         <div class="vazio" id="avisoLogin" style="display: none;">
@@ -459,26 +499,6 @@
         window.location.reload();
     }
 </script>
-<script>
-    function atualizarNavbar() {
-        let idUsuario = sessionStorage.getItem("ID_USUARIO");
-        let nomeUsuario = sessionStorage.getItem("NOME_USUARIO");
-
-        if (idUsuario != null && nomeUsuario != null) {
-            navVisitante.style.display = "none";
-            navUsuario.style.display = "flex";
-            nomeNavbar.innerText = "Olá, " + nomeUsuario + "!";
-            conteudoQuiz.style.display = "block";
-        } else {
-            avisoLogin.style.display = "block";
-        }
-    }
-
-    function sair() {
-        sessionStorage.clear();
-    }
-
-    atualizarNavbar();
-</script>
+<script src="/usuario.js"></script>
 </body>
 </html>

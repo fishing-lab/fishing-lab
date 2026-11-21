@@ -1,4 +1,3 @@
-
 var quizModel = require("../models/quizModel");
 
 function submeter(req, res) {
