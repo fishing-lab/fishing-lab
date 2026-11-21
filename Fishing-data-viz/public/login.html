@@ -28,8 +28,14 @@
             </div>
 
             <div class="nav-direita">
-                <a class="btn-entrar" href="login.html">Entrar</a>
-                <a class="btn-cadastro" href="cadastro.html">Criar Conta</a>
+                <div id="navVisitante" style="display: flex; gap: 15px; align-items: center;">
+                    <a class="btn-entrar" href="login.html">Entrar</a>
+                    <a class="btn-cadastro" href="cadastro.html">Criar Conta</a>
+                </div>
+                <div id="navUsuario" style="display: none; gap: 15px; align-items: center;">
+                    <span class="btn-entrar" id="nomeNavbar"></span>
+                    <a class="btn-cadastro" href="index.html" onclick="sair()">Sair</a>
+                </div>
             </div>
         </nav>
     </header>
@@ -89,8 +95,6 @@
         </div>
     </footer>
 
-</body>
-</html>
 <script>
     function entrar() {
         let email = input_email.value;
@@ -123,7 +127,7 @@
                         mensagem.innerHTML = "Login realizado com sucesso!";
 
                         setTimeout(function() {
-                            window.location = "./dashboard.html";
+                            window.location = "./index.html";
                         }, 500);
 
                     });
@@ -133,11 +137,31 @@
                 }
 
             })
-            .catch(function(erro) {
-                console.log("Erro ao realizar login:", erro);
+            .catch(function() {
+
                 mensagem.innerHTML = "Erro ao conectar com o servidor.";
             });
 
         }
     }
 </script>
+<script>
+    function atualizarNavbar() {
+        let idUsuario = sessionStorage.getItem("ID_USUARIO");
+        let nomeUsuario = sessionStorage.getItem("NOME_USUARIO");
+
+        if (idUsuario != null && nomeUsuario != null) {
+            navVisitante.style.display = "none";
+            navUsuario.style.display = "flex";
+            nomeNavbar.innerText = "Olá, " + nomeUsuario + "!";
+        }
+    }
+
+    function sair() {
+        sessionStorage.clear();
+    }
+
+    atualizarNavbar();
+</script>
+</body>
+</html>

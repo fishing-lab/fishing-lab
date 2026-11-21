@@ -2,6 +2,7 @@ body {
     background-color: #FAF9F5;
 }
 
+
 .pagina {
     max-width: 1440px;
     margin: auto;
@@ -400,4 +401,15 @@ body {
 
 .resultado #mensagemResultado {
     margin-top: 25px;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.pagina {
+    flex: 1;
+    margin: 0 auto;
 }

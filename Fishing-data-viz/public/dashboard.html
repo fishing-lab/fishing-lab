@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -25,17 +24,32 @@
                 <a href="dashboard.html">Dashboard</a>
             </div>
             <div class="nav-direita">
-                <a class="btn-entrar" href="login.html">Entrar</a>
-                <a class="btn-cadastro" href="cadastro.html">Criar Conta</a>
+                <div id="navVisitante" style="display: flex; gap: 15px; align-items: center;">
+                    <a class="btn-entrar" href="login.html">Entrar</a>
+                    <a class="btn-cadastro" href="cadastro.html">Criar Conta</a>
+                </div>
+                <div id="navUsuario" style="display: none; gap: 15px; align-items: center;">
+                    <span class="btn-entrar" id="nomeNavbar"></span>
+                    <a class="btn-cadastro" href="index.html" onclick="sair()">Sair</a>
+                </div>
             </div>
         </nav>
     </header>
 
     <main class="pagina">
+        <div class="vazio" id="avisoLogin" style="display: none;">
+            <h4>ÁREA EXCLUSIVA</h4>
+            <h2>Faça login para acessar sua Dashboard</h2>
+            <p>Para consultar seu histórico e acompanhar seus resultados, você precisa entrar na sua conta do Fishing Lab.</p>
+            <a class="botao-verde" href="login.html">Entrar</a>
+            <a class="botao-claro" href="cadastro.html">Criar conta</a>
+        </div>
+
+        <div id="conteudoDashboard" style="display: none;">
         <div class="vazio" id="semDados">
             <h4>ÁREA DO USUÁRIO</h4>
             <h2>Fishing Dashboard</h2>
-            <a class="botao-verde" href="login.html">Ir para Login →</a>
+            <p>Carregando seu histórico...</p>
         </div>
 
         <div id="comDados" style="display: none;">
@@ -109,6 +123,7 @@
                 <p>Aprender é um processo. Retome os guias e volte quando quiser.</p>
             </div>
         </div>
+        </div>
     </main>
 
     <footer class="rodape">
@@ -127,19 +142,6 @@
         </div>
     </footer>
 <script>
-    let perguntas = [
-        "Qual é uma das principais características do tucunaré?",
-        "Em quais ambientes o tucunaré pode ser encontrado?",
-        "Qual cuidado é importante ao manusear um peixe após a captura?",
-        "Qual das espécies abaixo é conhecida por ser um peixe de água doce?",
-        "Qual é a principal função de uma vara de pesca?",
-        "Qual equipamento permite armazenar e recolher a linha de pesca?",
-        "O que deve ser considerado na escolha da linha de pesca?",
-        "Qual é o objetivo de utilizar iscas artificiais na pescaria?",
-        "Na pesca com iscas artificiais, o que significa trabalhar a isca?",
-        "Por que variar a velocidade de recolhimento de uma isca artificial?"
-    ];
-
     let categoriasPerguntas = [
         'Espécies de Peixes',
         'Espécies de Peixes',
@@ -325,53 +327,6 @@
             }
         });
 
-        let erros = [];
-        let acertos = [];
-        let ordem = [];
-
-        for (let i = 0; i < perguntas.length; i++) {
-            erros.push(0);
-            acertos.push(0);
-            ordem.push(i);
-        }
-
-        for (let i = 0; i < historico.length; i++) {
-            for (let j = 0; j < historico[i].respostas.length; j++) {
-                let resposta = historico[i].respostas[j];
-                let numero = resposta.numeroQuestao - 1;
-
-                if (numero >= 0 && numero < perguntas.length) {
-                    if (resposta.acertou) {
-                        acertos[numero]++;
-                    } else {
-                        erros[numero]++;
-                    }
-                }
-            }
-        }
-
-        for (let i = 0; i < ordem.length; i++) {
-            for (let j = i + 1; j < ordem.length; j++) {
-                if (erros[ordem[j]] > erros[ordem[i]]) {
-                    let troca = ordem[i];
-                    ordem[i] = ordem[j];
-                    ordem[j] = troca;
-                }
-            }
-        }
-
-        let linhas = '';
-
-        for (let i = 0; i < ordem.length; i++) {
-            let numero = ordem[i];
-
-            linhas += '<div class="linha-questao">';
-            linhas += '<span>Questão ' + (numero + 1) + ' - ' + perguntas[numero] + '<small>' + categoriasPerguntas[numero] + '</small></span>';
-            linhas += '<span class="erro">' + erros[numero] + '</span>';
-            linhas += '<span>' + acertos[numero] + '</span></div>';
-        }
-
-        questoesDificeis.innerHTML = linhas;
     }
 
     let gabarito = ['B', 'C', 'C', 'D', 'B', 'C', 'D', 'A', 'B', 'C'];
@@ -382,8 +337,6 @@
         if (idUsuario == null) {
             return;
         }
-
-        semDados.innerHTML = '<h2>Carregando seu histórico...</h2>';
 
         fetch("/quiz/historico/" + idUsuario)
             .then(function(resposta) {
@@ -417,8 +370,7 @@
 
                 montarDashboard(historico);
             })
-            .catch(function(erro) {
-                console.log("Erro ao carregar dashboard:", erro);
+            .catch(function() {
 
                 semDados.innerHTML = '<h2>Não foi possível carregar seu histórico.</h2><p>Tente atualizar a página.</p>';
             });
@@ -426,6 +378,27 @@
 
     carregarHistorico();
 
+</script>
+<script>
+    function atualizarNavbar() {
+        let idUsuario = sessionStorage.getItem("ID_USUARIO");
+        let nomeUsuario = sessionStorage.getItem("NOME_USUARIO");
+
+        if (idUsuario != null && nomeUsuario != null) {
+            navVisitante.style.display = "none";
+            navUsuario.style.display = "flex";
+            nomeNavbar.innerText = "Olá, " + nomeUsuario + "!";
+            conteudoDashboard.style.display = "block";
+        } else {
+            avisoLogin.style.display = "block";
+        }
+    }
+
+    function sair() {
+        sessionStorage.clear();
+    }
+
+    atualizarNavbar();
 </script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -24,13 +23,28 @@
                 <a href="dashboard.html">Dashboard</a>
             </div>
             <div class="nav-direita">
-                <a class="btn-entrar" href="login.html">Entrar</a>
-                <a class="btn-cadastro" href="cadastro.html">Criar Conta</a>
+                <div id="navVisitante" style="display: flex; gap: 15px; align-items: center;">
+                    <a class="btn-entrar" href="login.html">Entrar</a>
+                    <a class="btn-cadastro" href="cadastro.html">Criar Conta</a>
+                </div>
+                <div id="navUsuario" style="display: none; gap: 15px; align-items: center;">
+                    <span class="btn-entrar" id="nomeNavbar"></span>
+                    <a class="btn-cadastro" href="index.html" onclick="sair()">Sair</a>
+                </div>
             </div>
         </nav>
     </header>
 
     <main class="pagina">
+        <div class="vazio" id="avisoLogin" style="display: none;">
+            <h4>ÁREA EXCLUSIVA</h4>
+            <h2>Faça login para acessar o Quiz</h2>
+            <p>Para testar seus conhecimentos, você precisa entrar na sua conta do Fishing Lab.</p>
+            <a class="botao-verde" href="login.html">Entrar</a>
+            <a class="botao-claro" href="cadastro.html">Criar conta</a>
+        </div>
+
+        <div id="conteudoQuiz" style="display: none;">
         <p class="caminho">Início / Aprenda / Quiz</p>
 
         <div class="pagina-inicio">
@@ -121,6 +135,7 @@
                 <button class="botao-claro" onclick="tentarNovamente()">Refazer Quiz</button>
                 <a class="botao-verde" href="dashboard.html">Minha Dashboard →</a>
             </div>
+        </div>
         </div>
     </main>
 
@@ -397,8 +412,6 @@
     function salvarTentativa() {
         let fkUsuario = sessionStorage.getItem("ID_USUARIO");
 
-        console.log("ID do usuário enviado:", fkUsuario);
-
         if (fkUsuario == null) {
             alert("Você precisa estar logado para salvar seu resultado.");
             return;
@@ -431,13 +444,13 @@
         })
         .then(function(resposta) {
             if (resposta.ok) {
-                console.log("Tentativa salva com sucesso!");
+
             } else {
                 throw "Erro ao salvar a tentativa.";
             }
         })
-        .catch(function(erro) {
-            console.log("Erro:", erro);
+        .catch(function() {
+
             alert("Não foi possível salvar seu resultado.");
         });
     }
@@ -445,6 +458,27 @@
     function tentarNovamente() {
         window.location.reload();
     }
+</script>
+<script>
+    function atualizarNavbar() {
+        let idUsuario = sessionStorage.getItem("ID_USUARIO");
+        let nomeUsuario = sessionStorage.getItem("NOME_USUARIO");
+
+        if (idUsuario != null && nomeUsuario != null) {
+            navVisitante.style.display = "none";
+            navUsuario.style.display = "flex";
+            nomeNavbar.innerText = "Olá, " + nomeUsuario + "!";
+            conteudoQuiz.style.display = "block";
+        } else {
+            avisoLogin.style.display = "block";
+        }
+    }
+
+    function sair() {
+        sessionStorage.clear();
+    }
+
+    atualizarNavbar();
 </script>
 </body>
 </html>
